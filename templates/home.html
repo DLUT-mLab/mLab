@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %} 首页 {% endblock %}
+
+
+{% block script %}
+<style>
+    
+.right{
+    position: relative;
+}
+
+.jumbotron{
+    padding-left:60px;
+    padding-right:60px;
+}
+
+</style>
+
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron">
+            <h2>欢迎来到xxx实验室</h2>
+            <p>实验室简介若干。。。。。。。。。。。。
+            。。。。。。</p>
+        </div>
+
+        
+    </div>
+    <div class="col-md-3 right">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
