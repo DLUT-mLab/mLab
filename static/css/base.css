@@ -1,8 +1,4 @@
-/* body{
-    background-image: -webkit-linear-gradient(to top, white, #99CC00);
-    background-image: linear-gradient(to top, white, #99CC00);
-}
- */
+
 .header-banner {
     height: 200px;
     margin: 0 auto;
@@ -17,15 +13,14 @@
 .content-wrap {
     max-width: 1100px;
     margin: 0 auto;
-        padding-left: 10px;
+    padding-left: 10px;
     padding-right: 10px;
 }
 
 /*navbar有margin*/
-header{
-    height: 100%;
-}
-
+/* .content{
+    min-height: 1000px;
+} */
 
 .navbar {
     border-radius: 0px;
@@ -48,12 +43,9 @@ header{
     max-width: 1100px;
 }
 
-.content{
-    min-height: 600px;
-}
 
 .footer-wrap{
-    background: #2c3e50;
+    /*background: #2c3e50;*/
 }
 
 .footer{
@@ -62,5 +54,21 @@ header{
     margin: 0 auto;
     margin-top: 15px;
     padding: 20px 0 10px 0;
-    color: white;
+    /*color: white;*/
+}
+
+ul.navbar-nav>li>a:after{
+    content: "";
+    display: block;
+    height: 3px;
+    width: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    background-color: #18bc9c;
+    transition: all .2s ease-out;
+}
+
+ul.navbar-nav>li.active>a:after, ul.navbar-nav>li>a:hover:after{
+    width: 100%;
 }

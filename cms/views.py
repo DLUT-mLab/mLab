@@ -7,5 +7,13 @@ def home(request):
     return render(request, 'home.html')
 
 
-def test(request):
-    return render(request, 'test.html')
+def news(request):
+    return render(request, 'news.html')
+
+
+def acade(request):
+    return render(request, 'acade.html')
+
+
+def member(request):
+    return render(request, 'member.html')
