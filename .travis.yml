@@ -1,0 +1,40 @@
+language: python
+python:
+  - "2.7"
+
+before_install:
+ - echo "before_install"
+ - echo $SSHPRIVATE | base64 -d >> ~/.ssh/id_rsa
+ - chmod 400 ~/.ssh/id_rsa
+ - chmod +x ./scripts/*
+
+install: echo 'install'
+
+
+# run test
+script: 
+ - echo 'script'
+ # python
+ # - make sync
+ # - make test
+
+ - echo 'script done'
+
+
+ - echo 'clean'
+ # - make clean
+
+
+# deploy
+after_success:
+  - sh ./scripts/deploy.sh
+
+
+branches:
+  only:
+    - master
+#  - eval "$(ssh-agent -s)" #start the ssh agent
+#  - git status
+#  - ls -l
+
+

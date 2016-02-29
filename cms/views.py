@@ -17,3 +17,7 @@ def acade(request):
 
 def member(request):
     return render(request, 'member.html')
+
+
+def album(request):
+    return render(request, 'album.html')

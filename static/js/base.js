@@ -20,7 +20,7 @@ $(window).resize(function() {
 
 $(document).ready(function() {
     var content_height = $(window).height() - $('header').height() - $('.footer').height() - nav_margin_btm - 15;
-    $('.content-wrap').css('min-height', content_height);
+    // $('.content-wrap').css('min-height', content_height);
     $.each($('.navbar-nav').find('li'), function() {
         console.log(window.location.pathname);  
         $(this).toggleClass('active',

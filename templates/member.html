@@ -5,6 +5,7 @@ img.avatar {
     height: auto;
 }
 </style>
+{% load staticfiles %}
 {% endblock %} {% block content %}
 <ol class="breadcrumb">
     <li><a href="/">首页</a></li>
@@ -13,8 +14,10 @@ img.avatar {
 <div class="row clearfix">
     <div class="col-lg-9">
         <h2>指导教师</h2>
-        <img class="avatar img-responsive img-thumbnail" src="http://gs1.dlut.edu.cn/Supervisor/Front/dsxx/new/TutorPicDisplay.aspx?webpagename=MengJ" alt="">
-        <h3>个人简介</h3>
+        <hr>
+        <h3>孟军</h3>
+        <img class="avatar img-responsive img-thumbnail" src="{% static "img/meng.png" %}" alt="">
+        <h4>个人简介</h4>
         <p>
             <ul>
                 <li>2008.09—2012.12 大连理工大学 计算机应用技术专业 获博士学位</li>
@@ -30,11 +33,10 @@ img.avatar {
         <p>
             主讲的课程: ＰＡＳＣＡＬ程序设计（英语教学）、Ｃ/C++语言（英语教学）、ＰＲＯＬＯＧ语言程序设计、数据结构、人工智能、数据库程序设计、计算机文化基础、计算机软件基础、管理预测决策、专业英语、数据仓库与数据挖掘、工程计算（英语教学）等。</p>
 
-        <hr>
-
         <h2>在读博士</h2>
-
+        <hr>
         <h2>在读硕士</h2>
+        <hr>
 
     </div>
 </div>

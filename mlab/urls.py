@@ -20,9 +20,10 @@ import cms.views
 
 urlpatterns = [
     url(r'^$', cms.views.home),
-    url(r'^admin/$', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'^news/$', cms.views.news),
     url(r'^acade/$', cms.views.acade),
     url(r'^member/$', cms.views.member),
+    url(r'^album/$', cms.views.album),
 
 ]
