@@ -1,3 +1,5 @@
+#! coding=utf8
+
 """mlab URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,7 +15,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 import cms.views
 
@@ -25,5 +27,6 @@ urlpatterns = [
     url(r'^acade/$', cms.views.acade),
     url(r'^member/$', cms.views.member),
     url(r'^album/$', cms.views.album),
+    url(r'^summernote/', include('django_summernote.urls')),
 
 ]

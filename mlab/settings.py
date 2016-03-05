@@ -1,3 +1,5 @@
+#! coding=utf8
+
 """
 Django settings for mlab project.
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_summernote',
     'cms',
 ]
 
@@ -119,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'zh-cn'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -137,3 +140,78 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     # '/var/www/static/',
 ]
+
+
+# SUMMERNOTE CONFIG
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode
+    'iframe': True,  # or set False to use SummernoteInplaceWidget - no iframe mode
+
+    # Using Summernote Air-mode
+    'airMode': False,
+
+    # Use native HTML tags (`<b>`, `<i>`, ...) instead of style attributes
+    # (Firefox, Chrome only)
+    'styleWithTags': True,
+
+    # Set text direction : 'left to right' is default.
+    'direction': 'ltr',
+
+    # Change editor size
+    'width': '100%',
+    'height': '600',
+
+    # # Use proper language setting automatically (default)
+    # 'lang': None
+
+    # Or, set editor language/locale forcely
+    'lang': 'zh-cn',
+
+    # Customize toolbar buttons
+    # 'toolbar': [
+    #     ['style', ['style']],
+    #     ['style', ['bold', 'italic', 'underline', 'clear']],
+    #     ['para', ['ul', 'ol', 'height']],
+    #     ['insert', ['link', 'picture', 'video']],
+    # ],
+
+    # Need authentication while uploading attachments.
+    'attachment_require_authentication': True,
+
+    # Set `upload_to` function for attachments.
+    # 'attachment_upload_to': my_custom_upload_to_func(),
+
+    # Set custom storage class for attachments.
+    # 'attachment_storage_class': 'my.custom.storage.class.name',
+
+    # Set custom model for attachments (default: 'django_summernote.Attachment')
+    # 'attachment_model': 'my.custom.attachment.model', # must inherit 'django_summernote.AbstractAttachment'
+
+    # Set external media files for SummernoteInplaceWidget.
+    # !!! Be sure to put {{ form.media }} in template before initiate summernote.
+    'inplacewidget_external_css': (                                             
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',      
+        '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css',
+    ),                                                                          
+    'inplacewidget_external_js': (                                              
+        '//code.jquery.com/jquery-1.9.1.min.js',                                
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',        
+    ),
+}
+
+
+# BEANSDB CONFIG
+BEANSDBCFG = {
+    "127.0.0.1:7900": range(16)
+}
+from utils.dbclient import Beansdb
+BEANSDB_CLIENT = Beansdb(BEANSDBCFG, 16)
+"""usage:
+from mlab.settings import BEANSDB_CLIENT
+
+BEANSDB_CLIENT.get(key)
+BEANSDB_CLIENT.set(key, value)
+BEANSDB_CLIENT.delete(key)
+"""
+
+
