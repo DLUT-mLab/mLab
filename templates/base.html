@@ -1,107 +1,126 @@
+{% load i18n static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn" style="background-color:#eee">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <title>{% block title %}{{ current_module.label }} - {{ block.super }}{% endblock %}</title>
+        {% block favicon %}<link href="{% static 'material/imgs/favicon.png' %}" rel="shortcut icon">{% endblock %}
+        {% block css %}
+        <link href="{% static 'material/css/materialize.css' %}" rel="stylesheet">
+        <link href="{% static 'material/css/jquery.datetimepicker.css ' %}" rel="stylesheet">
+        <link href="{% static 'material/css/forms.css ' %}" rel="stylesheet">
+        <link href="{% static 'material/frontend/css/frontend.css' %}" rel="stylesheet">
+        <link href="{% static 'material/frontend/css/font-awesome.css' %}" rel="stylesheet">
+        {% endblock %}
 
-<head>
-    <meta charset="utf-8">
-    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>{% block title %}大连理工大学xx研究室{% endblock %}</title>
-    {% load staticfiles %}
-    <!-- Bootstrap -->
-    <!-- <link href="{% static "css/fonts.css" %}" rel="stylesheet"> -->
-    <link href="{% static "css/bootstrap.flatui.css" %}" rel="stylesheet">
-    <!-- <link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        {% block js %}
+        <script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
+        <script src="{% static 'material/js/materialize.js' %}"></script>
+        <script src="{% static 'material/js/jquery.datetimepicker.js' %}"></script>
+        <script src="{% static 'material/js/jquery.formset.js' %}"></script>
+        <script src="{% static 'material/frontend/js/jquery.activeNavigation.js' %}"></script>
+        <script src="{% static 'material/frontend/js/jquery.pjax.js' %}"></script>
+        <script src="{% static 'material/js/material_init.js' %}"></script>
+        <script src="{% static 'material/frontend/js/frontend.js' %}"></script>
+        {% endblock %}
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static "js/jquery-2.2.0.min.js" %}"></script>
-    
-    <link rel="stylesheet" href="{% static "css/base.css" %}">
-    <script src="{% static "js/base.js" %}"></script>
+        {% block extrahead %}{% endblock %}
+    </head>
+    <body>
+        {% block authenticate %}
+        {% if user.is_authenticated %}
+        <ul id="user-menu" class="dropdown-content">
+            <li><a href="#!">{% trans "Profile" %}</a></li>
+            <li><a href="#!">{% trans "Logout" %}</a></li>
+            {% block user_menu_extra %}{% endblock %}
+        </ul>
+        {% endif %}
+        {% endblock %}
+        <header>
+            <nav class="nav-top green">
+                <a href="#" data-activates="nav-mobile" class="button-collapse full"><i class="mdi-navigation-menu"></i></a>
 
-    {% block script %}
-    {% endblock %}
-
-</head>
-
-<body>
-    <header>
-        <div class="header-banner">
-            <div class="banner-img">
-                <span>banner img</span>
-            </div>
-        </div>
-        <nav class="navbar navbar-default header-menu">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">mLab 实验室</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/news/">新闻动态</a></li>
-                        <li><a href="/acade/">学术研究</a></li>
-                        <li><a href="/member/">成员介绍</a></li>
-                        <li><a href="#">科研项目</a></li>
-                        <li><a href="/album/">相册</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">平台和下载 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">资料下载</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">在线预测平台</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">程序下载</a></li>
-                            </ul>
-                        </li>
+                <div class="nav-wrapper">
+                    <div class="page-title hide-on-med-and-down">
+                        {% block page_title %}<a href="{{ current_module.index_url }}">{{ current_module.label }}</a>{% endblock %}
+                    </div>
+                    
+                    <ul class="right">
+                        {% block top_menu_extra %}{% endblock %}
+                        {% if user.is_authenticated %}
+                        <li><a class="dropdown-button" href="#!" data-activates="user-menu"><img class="avatar left mdi-img circle" src="{% static 'material/frontend/imgs/default_user.png' %}">{{ user.get_full_name|default:user.username }}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}" alt="Login"><i class="mdi-action-lock"></i></a></li>
+                        {% endif %}
                     </ul>
-                    <form class="navbar-form navbar-right" role="search" action="/search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="搜索本站内容">
-                        </div>
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                    </form>
                 </div>
-                <!-- /.navbar-collapse -->
+
+                <ul id="nav-mobile" class="side-nav fixed module-menu">
+                    <li class="logo valign-wrapper">
+                        <a href="/" class="no-navigation">{% block page_logo %}<img class="responsive-img" src="{% static 'material/imgs/logo.png' %}">{% endblock %}</a>
+                    </li>
+
+                    {% for module in modules %}
+                    {% if current_module == module and module.menu %}
+                    <li class="no-padding">
+                        <div class="collapsible-body" style="display:block">
+                            <ul class="collapsible" data-collapsible="expandable">
+                                <li class="header active">
+                                    <a class="collapsible-header no-pjax"><i class="{{ module.icon }}"></i> {{ module.label|default:"" }}</a>
+                                    <div class="collapsible-body" style="display: block;">
+                                        {% include module.menu %}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li class="no-padding">
+                        <a class="collapsible-header no-pjax" href="{{ module.index_url }}"><i class="{{ module.icon }}"></i> {{ module.label|default:"" }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block main %}
+            {% block breadcrumbs %}
+            <div class="breadcrumbs">
+                <div class="green darken-2 white-text">
+                    {% block breadcrumbs_items %}
+                    {% endblock %}
+                </div>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </header>
-    <div class="content-wrap">
-        <div class="content">
-            {% block content %}
-            
             {% endblock %}
+            {% block content %}
+            <div class="row">
+            </div>
+            {% endblock %}
+            {% endblock %}
+
+            {% block messages %}
+            {% if messages %}
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    {% for message in messages %}
+                        Materialize.toast('{{ message|capfirst }}', 10000, 'alert-{{ message.tags }}') 
+                    {% endfor %}
+                });
+            </script>
+            {% endif %}
+            {% endblock %}
+        </main>
+        {% block load_indicator %}
+        <div id="load_indicator" class="preloader-wrapper big active" style="position:absolute;left:45%;top:45%;display:none">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left"><div class="circle"></div></div>
+                <div class="gap-patch"><div class="circle"></div></div>
+                <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
         </div>
-    </div>
-
-    <div class="footer-wrap">
-
-        <div class="footer">
-        <hr>
-            <a href="/admin">mLab</a>
-            版权所有：大连理工大学xxx研究室（DUTXX） &nbsp 联系我们: <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">xxxx@dlut.edu.cn </a>  &nbsp  Tel: 0411-847xxxxx
-        </div>
-    </div>
-
-    
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static "js/bootstrap.js" %}"></script>
-</body>
-
-</html>
+        {% endblock %}
+    </body>
+</html> 

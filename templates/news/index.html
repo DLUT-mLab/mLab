@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block extrahead %}
+<style>
+    .fr{
+        float: right;
+    }
+</style>
+{% endblock%}
+
+{% block breadcrumbs_items %}
+<a href="/home/">首页</a> ⟩<a class="active">{{current_module.label}}</a>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col l8 m12" >
+        <div class="card data-card">
+            <div class="card-content">
+                <div class="card-title black-text">
+                    最新发布
+                </div>
+
+               <ul>
+                    <li>
+                        <a href="/news/detail/363" target="_blank" title="信息检索研究室举行新年联欢会">
+                            <span>信息检索研究室举行新年联欢会</span>
+                        </a>
+                        <span class="fr">2016-01-07</span>
+                    </li>
+                    <li>
+                        <a href="/news/detail/361" target="_blank" title="王健老师评为教授">
+                            <span>王健老师评为教授</span>
+                        </a>
+                        <span class="fr">2015-12-29</span>
+                    </li>
+                    <li>
+                        <a href="/news/detail/348" target="_blank" title="实验室师生参加在美国华盛顿举行的IEEE BIBM2015会议">
+                            <span>实验室师生参加在美国华盛顿举行的IEEE BIBM2015会议</span>
+                        </a>
+                        <span class="fr">2015-11-25</span>
+                    </li>
+                    <li>
+                        <a href="/news/detail/347" target="_blank" title="实验室师生参加第四届全国社会媒体处理大会SMP2015,获得优秀学生论文">
+                            <span>实验室师生参加第四届全国社会媒体处理大会SMP2015,获得优秀学生论文</span>
+                        </a>
+                        <span class="fr">2015-11-18</span>
+                    </li>
+                    <li>
+                        <a href="/news/detail/346" target="_blank" title="实验室代表参加第十四届全国计算语言学会议CCL2015">
+                            <span>实验室代表参加第十四届全国计算语言学会议CCL2015</span>
+                        </a>
+                        <span class="fr">2015-11-15</span>
+                    </li>
+                    <li>
+                        <a href="/news/detail/345" target="_blank" title="实验室师生参加第四届自然语言处理与中文计算会议NLPCC2015">
+                            <span>实验室师生参加第四届自然语言处理与中文计算会议NLPCC2015</span>
+                        </a>
+                        <span class="fr">2015-10-20</span>
+                    </li>
+                    <li>
+                        <a href="/news/detail/334" target="_blank" title="实验室申报的国家自然科学基金获得丰收">
+                            <span>实验室申报的国家自然科学基金获得丰收</span>
+                        </a>
+                        <span class="fr">2015-09-04</span>
+                    </li>
+                    <li>
+                        <a href="/news/detail/335" target="_blank" title="实验室师生参加第十五届中国机器学习大会（CCML2015）">
+                            <span>实验室师生参加第十五届中国机器学习大会（CCML2015）</span>
+                        </a>
+                        <span class="fr">2015-09-03</span>
+                    </li>
+                </ul>
+                
+                <div class="row pagination">
+                    <div class="col s12 right-align">1-6 of 6<span style="padding-left:30px" class="right">
+                        
+                        <i class="mdi-image-navigate-before small grey-text"></i>
+                        &nbsp;
+                        <i class="mdi-image-navigate-next small grey-text"></i>
+                        
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col l4 m12">
+        <div class="card-panel">
+            <div class="card-title">热门新闻</div>
+            <p>Easy to use, programmable workflow framework on top of Django</p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

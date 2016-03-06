@@ -18,15 +18,18 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 import cms.views
+from material.frontend import urls as frontend_urls
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
-    url(r'^$', cms.views.home),
+    url(r'^$', RedirectView.as_view(url='/home/')),
+    url(r'', include(frontend_urls)),
     url(r'^admin/', admin.site.urls),
-    url(r'^news/$', cms.views.news),
-    url(r'^acade/$', cms.views.acade),
-    url(r'^member/$', cms.views.member),
-    url(r'^album/$', cms.views.album),
+    # url(r'^news/$', cms.views.news),
+    # url(r'^acade/$', cms.views.acade),
+    # url(r'^member/$', cms.views.member),
+    # url(r'^album/$', cms.views.album),
     url(r'^summernote/', include('django_summernote.urls')),
 
 ]

@@ -2,7 +2,6 @@ sync:
 	virtualenv venv;
 	. venv/bin/activate;\
 	pip install -r pip-req.txt;\
-	./manage.py migrate
 
 serve:
 	. venv/bin/activate;\

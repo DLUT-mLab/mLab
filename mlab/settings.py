@@ -34,6 +34,10 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 
+    'material',
+    'material.frontend',
+    'material.admin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +47,11 @@ INSTALLED_APPS = [
 
     'django_summernote',
     'cms',
+
+
 ]
+
+# MATERIAL_ADMIN_SITE = 'cms.admin'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -152,7 +160,7 @@ SUMMERNOTE_CONFIG = {
 
     # Use native HTML tags (`<b>`, `<i>`, ...) instead of style attributes
     # (Firefox, Chrome only)
-    'styleWithTags': True,
+    'styleWithTags': False,
 
     # Set text direction : 'left to right' is default.
     'direction': 'ltr',
@@ -214,4 +222,14 @@ BEANSDB_CLIENT.set(key, value)
 BEANSDB_CLIENT.delete(key)
 """
 
+
+MODULES = (
+    'cms.home.modules.Home',
+    'cms.news.modules.News',
+    'cms.acade.modules.Acade',
+    'cms.member.modules.Member',
+    'cms.album.modules.Album',
+    'cms.files.modules.Files',
+
+)
 
