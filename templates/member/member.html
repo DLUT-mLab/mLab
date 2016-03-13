@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block breadcrumbs_items %}
+<a href="/home/">首页</a> ⟩<a class="active">{{current_module.label}}</a> {% endblock %} 
+
+{% block content %}
+
+{{ member.id }}
+{{ member.name }}
+{{ member.intro }}
+
+
+{% endblock %}

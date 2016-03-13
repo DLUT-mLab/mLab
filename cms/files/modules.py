@@ -8,5 +8,5 @@ class Files(Module):
 
     @property
     def label(self):
-        return u"平台和资料"
+        return u"资料下载"
 

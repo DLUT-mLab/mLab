@@ -212,6 +212,7 @@ SUMMERNOTE_CONFIG = {
 BEANSDBCFG = {
     "127.0.0.1:7900": range(16)
 }
+
 from utils.dbclient import Beansdb
 BEANSDB_CLIENT = Beansdb(BEANSDBCFG, 16)
 """usage:
@@ -222,7 +223,12 @@ BEANSDB_CLIENT.set(key, value)
 BEANSDB_CLIENT.delete(key)
 """
 
+# django default file storage config
+MEDIA_ROOT = "/home/linwei/mlabfiles/"
+MEDIA_URL = '/media/'
 
+
+# define material framework modules
 MODULES = (
     'cms.home.modules.Home',
     'cms.news.modules.News',
@@ -230,6 +236,7 @@ MODULES = (
     'cms.member.modules.Member',
     'cms.album.modules.Album',
     'cms.files.modules.Files',
+    'cms.platform.modules.Platform',
 
 )
 

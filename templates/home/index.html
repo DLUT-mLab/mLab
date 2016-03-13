@@ -1,31 +1,222 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% block title %}大连理工大学XXX实验室{% endblock %} 
+{% block page_title %}<a href="/home/">XXX实验室</a>{% endblock %} {% block content %}
+{% block extrahead %}
+{% load static %}
+<script src="{% static 'js/jquery.jcarousel.min.js' %}"></script> <!-- but with the right path! -->
+<link rel="stylesheet" href="{% static 'css/unslider.css' %}">
+<link rel="stylesheet" href="{% static 'css/unslider-dots.css' %}">    
+
+<style>
+p{
+    text-indent: 20px;
+}
+
+li > img{
+        width: 800px;
+        height: 400px;
+}
+
+/*
+This is the visible area of you carousel.
+Set a width here to define how much items are visible.
+The width can be either fixed in px or flexible in %.
+Position must be relative!
+*/
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+}
+
+/*
+This is the container of the carousel items.
+You must ensure that the position is relative or absolute and
+that the width is big enough to contain all items.
+*/
+.jcarousel ul {
+    width: 20000em;
+    position: relative;
+
+    /* Optional, required in this case since it's a <ul> element */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+These are the item elements. jCarousel works best, if the items
+have a fixed width and height (but it's not required).
+*/
+.jcarousel li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+}
 
 
-{% block title %}大连理工大学XXX实验室{% endblock %}
+.jcarousel-prev,
+.jcarousel-next{
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background: #4E443C;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 1px #000;
+    font: 24px/27px Arial, sans-serif;
+    border-radius: 30px;
+    box-shadow: 0 0 4px #F0EFE7;
+}
 
+.jcarousel-prev {
+    left: 30px;
+}
 
-{% block page_title %}<a href="/home/">XXX实验室</a>{% endblock %}
+.jcarousel-next {
+    right: 30px;
+}
 
+.jcarousel-pagination {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    margin: 0;
+    margin-left: -22px;
+}
 
-{% block content %}
+.jcarousel-pagination a {
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+    background: #fff;
+    color: #4E443C;
+    border-radius: 10px;
+    text-indent: -9999px;
+    margin-right: 7px;
+    box-shadow: 0 0 2px #4E443C;
+}
+
+.jcarousel-pagination a.active {
+    background: #4E443C;
+    color: #fff;
+    opacity: 1;
+    box-shadow: 0 0 2px #F0EFE7;
+}
+</style>
+<script>
+$(function() {
+    var carousel = $('.jcarousel').jcarousel({
+        animation: 'slow',
+        center: true,
+        wrap: 'circular'
+    });
+    carousel.jcarouselAutoscroll({
+            interval: 3000,
+            target: '+=1',
+            autostart: true
+        });
+    $('.jcarousel-prev').jcarouselControl({
+        target: '-=1',
+        carousel: carousel
+    });
+
+    $('.jcarousel-next').jcarouselControl({
+        target: '+=1',
+        carousel: carousel
+    });
+
+    $('.jcarousel-pagination')
+            .on('jcarouselpagination:active', 'a', function() {
+                $(this).addClass('active');
+            })
+            .on('jcarouselpagination:inactive', 'a', function() {
+                $(this).removeClass('active');
+            })
+            .jcarouselPagination({
+             carousel: carousel,
+             // 'perPage': 3,
+            /*item: function(page) {
+                return '<a href="#' + page + '">' + page + '</a>';
+            }*/
+        });
+});
+</script>
+{% endblock %}
+
 <div class="row">
     <div class="col l8 m12" style="padding-left:40px">
-        <div class="card-panel">
-            <h4>欢迎来到大连理工大学XXX实验室</h4>
-            <p>实验室简介若干。。。。。。。。。。
-            </p>
+        <div class="card card-panel">
+            <h4>欢迎来到XXX实验室</h4>
+            <div class="card-body">
+                <p>我们专注于互联网上内容的搜索、分析、理解和诠释，挖掘出潜在的、有价值的、新颖的知识模式，创造人机和谐的网络环境。我们的研究方向是信息检索、自然语言处理、推荐系统、社会计算、情感计算、面向生物医学领域的文本挖掘等。信息检索技术涉及到自然语言处理、机器学习、认知科学等诸多理论和技术，是一个富有朝气和希望的研究领域。
+                </p>
+                <p>
+                    信息检索研究室（DUTIR）在林鸿飞教授(微博)领导下，坚持理论研究和实际应用相结合，与国外大学和研究机构保持良好的合作关系。营造宽松和谐的研究环境，悉心培养信息检索领域的优秀人才。鼓励学生积极参与各项学术活动，同时举办丰富多彩的文体活动，让学生受到多方面的熏陶。
+                </p>
+            </div>
         </div>
+        <div class="card card-panel">
+            <div class="jcarousel">
+                <ul class="list">
+                    <li><img src="/static/img/001.jpg" alt=""></li>
+                    <li><img src="/static/img/002.jpg" alt=""></li>
+                    <li><img src="/static/img/003.jpg" alt=""></li>
+                </ul>
+            </div>
 
-        <div class="card-panel">
-            
+              <!-- Controls -->
+            <a class="jcarousel-prev" href="#">‹</a>
+            <a class="jcarousel-next" href="#">›</a>
+
+              <!-- Pagination -->
+            <div class="jcarousel-pagination">
+                <!-- Pagination items will be generated in here -->
+            </div>
+
         </div>
-        
     </div>
-
     <div class="col l4 m12">
-        <div class="card-panel">
-            <h5>研究室新闻</h5>
-            
+        <div class="row card">
+            <div class="card-content"><span class="card-title green-text text-darken-3">研究室新闻</span>
+                <div class="card-body">
+                    <span class="card-title">2012届</span>
+                    <ul>
+                        <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
+                        <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
+                        <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
+                    </ul>
+
+                    <span class="card-title">2013届</span>
+                    <ul>
+                        <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
+                        <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
+                        <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
+                    </ul>
+                </div>
+        </div>
+        </div>
+
+        <div class="row card">
+            <div class="card-content"><span class="card-title green-text text-darken-3">学术研究</span>
+                <div class="card-body">
+                    <ul>
+                        <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
+                        <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
+                        <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
+                    </ul>
+
+                    <ul>
+                        <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
+                        <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
+                        <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
+                    </ul>
+                </div>
+        </div>
         </div>
     </div>
 </div>

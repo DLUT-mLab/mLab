@@ -3,25 +3,13 @@
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{% static "css/wangEditor.min.css"%}">
 <script type="text/javascript" src="{% static "js/wangEditor.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/myeditor.js" %}"></script>
 
-<style>
-    .wangEditor-container{
-        margin-top: 10px;
-    }
-    .wangEditor-container .clearfix{
-        clear: inherit;
-    }
-
-</style>
 <script>
     $().ready(function() {
-        var editor = new wangEditor('id_content');
-        editor.config.menuFixed = false;
-        // 上传图片
-        editor.config.uploadImgUrl = '/upload/';
-        editor.create();
-        $(".wangEditor-txt").height('500px');
-        $('.menu-tip').width('100%');
+        $('textarea').each(function(i,n){
+            make_editor($(n).attr('id'));
+        });
     });
 </script>
 {% endblock %}

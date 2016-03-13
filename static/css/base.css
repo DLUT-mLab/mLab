@@ -1,75 +1,8 @@
-
-.header-banner {
-    height: 150px;
-    margin: 0 auto;
-    background: #ccc;
+.card-body {
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 10px;
 }
 
-.header-menu {
-    z-index: 9999;
-    width: 100%;
-}
-
-.content-wrap {
-    min-height: 900px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-/*navbar有margin*/
-/* .content{
-    min-height: 1000px;
-} */
-
-.navbar {
-    border-radius: 0px;
-}
-
-.navbar-brand {
-    color: #000;
-}
-
-.container-fluid {
-    max-width: 1100px;
-    /* padding-left: 0px;
-    padding-right: 0px; */
-}
-
-.banner-img {
-    margin: 0 auto;
-    height: 100%;
-    background: gray;
-    max-width: 1100px;
-}
-
-
-.footer-wrap{
-    /*background: #2c3e50;*/
-}
-
-.footer{
-    min-height: 50px;
-    max-width: 1100px;
-    margin: 0 auto;
-    margin-top: 15px;
-    padding: 20px 0 10px 0;
-    /*color: white;*/
-}
-
-ul.navbar-nav>li>a:after{
-    content: "";
-    display: block;
-    height: 3px;
-    width: 0;
-    position: absolute;
-    left: 0;
-    bottom: 0px;
-    background-color: #18bc9c;
-    transition: all .2s ease-out;
-}
-
-ul.navbar-nav>li.active>a:after, ul.navbar-nav>li>a:hover:after{
-    width: 100%;
+ul.side-nav.fixed.module-menu li a{
+    font-size: 14px;
 }
