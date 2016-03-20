@@ -56,25 +56,41 @@ class Member(models.Model):
     start_date = models.DateField(u'入学时间', auto_now=False)
     intro = models.TextField(u'简介', blank=True, null=True)
 
-
     def __unicode__(self):
         return self.name
+
+    @property
+    def url(self):
+        return '/member/%s/' % (self.id, )
+    
+
 
 
 class Project(models.Model):
 
     class Meta:
-        verbose_name = u'研究项目'
-        verbose_name_plural = u'研究项目'
+        verbose_name = u'项目或研究方向'
+        verbose_name_plural = u'项目或研究方向'
 
-    name = models.CharField(u'项目名称', max_length=100)
-    intro = models.TextField(u'项目介绍', blank=True, null=True)
+    PROJECT = u'project'
+    RESEARCH = u'research'
+    TYPE = (
+        (PROJECT, '科研项目'),
+        (RESEARCH, '学术研究'),
+    )
+
+    name = models.CharField(u'名称', max_length=100)
+    project_type = models.CharField(u'类型', max_length=50, choices=TYPE, default=PROJECT)
+    ongoing = models.BooleanField(u'是否正在进行', default=False)
+    intro = models.TextField(u'简介', blank=True, null=True)
+    start_date = models.DateField(u'开始时间', auto_now=True)
     members = models.ManyToManyField(
         'Member',
-        verbose_name=u'所有成员',
+        verbose_name=u'成员',
         through='Membership',
         through_fields=('project', 'member'),
     )
+    achievement = models.TextField(u'成果', blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -82,8 +98,15 @@ class Project(models.Model):
 
 class Membership(models.Model):
 
+    class Meta:
+        verbose_name = u'成员关系'
+        verbose_name_plural = u'成员关系'
+
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
     member = models.ForeignKey('Member', on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return self.member.name + ' <---> ' + self.project.name
 
 
 class Attachment(models.Model):
@@ -102,6 +125,7 @@ class Attachment(models.Model):
     file_type = models.CharField('文件类型', max_length=50, choices=FILE_TYPE, default=DATA)
     intro = models.TextField(u'简介', blank=True, null=True)
     content = models.FileField(u'内容', upload_to='uploads/')
+    pub_date = models.DateTimeField(u'发布日期', auto_now=True)
 
 
     def __unicode__(self):

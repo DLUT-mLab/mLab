@@ -31,18 +31,20 @@
         {% block extrahead %}{% endblock %}
     </head>
     <body>
+
         {% block authenticate %}
-        {% if user.is_authenticated %}
+        <!-- {% if user.is_authenticated %}
         <ul id="user-menu" class="dropdown-content">
             <li><a href="#!">{% trans "Profile" %}</a></li>
             <li><a href="#!">{% trans "Logout" %}</a></li>
             {% block user_menu_extra %}{% endblock %}
         </ul>
-        {% endif %}
+        {% endif %} -->
         {% endblock %}
+
         <header>
             <nav class="nav-top green">
-                <a href="#" data-activates="nav-mobile" class="button-collapse full"><i class="mdi-navigation-menu"></i></a>
+                <a href="#" data-activates="nav-mobile" class="button-collapse full" style="margin-left: 10px;"><i class="mdi-navigation-menu"></i></a>
 
                 <div class="nav-wrapper">
                     <div class="page-title hide-on-med-and-down">
@@ -50,12 +52,14 @@
                     </div>
                     
                     <ul class="right">
-                        {% block top_menu_extra %}{% endblock %}
-                        {% if user.is_authenticated %}
-                        <li><a class="dropdown-button" href="#!" data-activates="user-menu"><img class="avatar left mdi-img circle" src="{% static 'material/frontend/imgs/default_user.png' %}">{{ user.get_full_name|default:user.username }}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-                        {% else %}
-                        <li><a href="{% url 'login' %}" alt="Login"><i class="mdi-action-lock"></i></a></li>
-                        {% endif %}
+                        {% block top_menu_extra %}
+                        
+                        {% endblock %}
+                       <!--  {% if user.is_authenticated %}
+                       <li><a class="dropdown-button" href="#!" data-activates="user-menu"><img class="avatar left mdi-img circle" src="{% static 'material/frontend/imgs/default_user.png' %}">{{ user.get_full_name|default:user.username }}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                       {% else %}
+                       <li><a href="{% url 'login' %}" alt="Login"><i class="mdi-action-lock"></i></a></li>
+                       {% endif %} -->
                     </ul>
                 </div>
 
@@ -89,6 +93,8 @@
         </header>
         <main>
             {% block main %}
+            <div id="wrap">
+            
             {% block breadcrumbs %}
             <div class="breadcrumbs">
                 <div class="green darken-2 white-text">
@@ -97,10 +103,24 @@
                 </div>
             </div>
             {% endblock %}
+
+                
             {% block content %}
-            <div class="row">
-            </div>
             {% endblock %}
+
+            </div>
+
+            {% block footer %}
+                <footer id="footer" class="page-footer green darken-4">
+                  
+                  <div class="footer-copyright">
+                      <div style="margin-left: 20px;">
+                          Copyright © 2016 大连理工大学xx实验室(<a href="/admin/" title="后台管理系统">mLab</a>)  版权所有<span class="" style="margin-left: 20px;">联系我们: <a href="mailto:xx@dlut.edu.cn">xx@dlut.edu.cn</a>&nbsp;&nbsp;0411-84706550</span>
+                    </div>
+                </div>
+              </footer>
+            {% endblock %}
+
             {% endblock %}
 
             {% block messages %}
@@ -115,6 +135,7 @@
             {% endif %}
             {% endblock %}
         </main>
+
         {% block load_indicator %}
         <div id="load_indicator" class="preloader-wrapper big active" style="position:absolute;left:45%;top:45%;display:none">
             <div class="spinner-layer spinner-blue-only">
@@ -124,5 +145,6 @@
             </div>
         </div>
         {% endblock %}
+
     </body>
 </html> 

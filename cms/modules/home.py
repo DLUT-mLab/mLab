@@ -1,7 +1,16 @@
 #! coding=utf8
 from material.frontend import Module
 from django.conf.urls import url
-from .views import HomeView
+from django.views.generic import TemplateView
+from material import LayoutMixin
+from cms import models
+
+
+class HomeView(LayoutMixin, TemplateView):
+    title = "New Shipment"
+    template_name="home/index.html"
+    haha = "find you"
+    
 
 class Home(Module):
     order = 1

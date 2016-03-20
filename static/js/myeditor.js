@@ -41,7 +41,4 @@ function make_editor(content_id) {
     editor.create();
     $(".wangEditor-txt").height('500px');
     $('.menu-tip').width('100%');
-    $('.wangEditor-container').css({'margin-top':'10px'});
-    $('.wangEditor-container').find('.clearfix').css({'clear':'inherit'});
-
 }
