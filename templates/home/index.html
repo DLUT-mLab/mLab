@@ -12,9 +12,18 @@ p{
     text-indent: 20px;
 }
 
-li > img{
-        width: 800px;
-        height: 400px;
+/* .list{
+    height: 300px;
+    overflow: hidden;
+}
+
+.list > li{
+    width: 100%;
+} */
+
+.list > li > img{
+    width: 800px;
+    height: 400px;
 }
 
 /*
@@ -149,14 +158,14 @@ $(function() {
 {% endblock %}
 
 <div class="row">
-    <div class="col l8 m12" style="padding-left:40px">
+    <div class="col l8 m12">
         <div class="card card-panel">
             <h4>欢迎来到XXX实验室</h4>
             <div class="card-body">
                 <p>我们专注于互联网上内容的搜索、分析、理解和诠释，挖掘出潜在的、有价值的、新颖的知识模式，创造人机和谐的网络环境。我们的研究方向是信息检索、自然语言处理、推荐系统、社会计算、情感计算、面向生物医学领域的文本挖掘等。信息检索技术涉及到自然语言处理、机器学习、认知科学等诸多理论和技术，是一个富有朝气和希望的研究领域。
                 </p>
                 <p>
-                    信息检索研究室（DUTIR）在林鸿飞教授(微博)领导下，坚持理论研究和实际应用相结合，与国外大学和研究机构保持良好的合作关系。营造宽松和谐的研究环境，悉心培养信息检索领域的优秀人才。鼓励学生积极参与各项学术活动，同时举办丰富多彩的文体活动，让学生受到多方面的熏陶。
+                    研究室在孟军教授领导下，坚持理论研究和实际应用相结合，与国外大学和研究机构保持良好的合作关系。营造宽松和谐的研究环境，悉心培养信息检索领域的优秀人才。鼓励学生积极参与各项学术活动，同时举办丰富多彩的文体活动，让学生受到多方面的熏陶。
                 </p>
             </div>
         </div>
@@ -182,16 +191,14 @@ $(function() {
     </div>
     <div class="col l4 m12">
         <div class="row card">
-            <div class="card-content"><span class="card-title green-text text-darken-3">研究室新闻</span>
+            <div class="card-content"><span class="card-title green-text text-darken-3">新闻动态</span>
                 <div class="card-body">
-                    <span class="card-title">2012届</span>
                     <ul>
                         <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
                         <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
                         <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
                     </ul>
 
-                    <span class="card-title">2013届</span>
                     <ul>
                         <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
                         <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
@@ -202,7 +209,7 @@ $(function() {
         </div>
 
         <div class="row card">
-            <div class="card-content"><span class="card-title green-text text-darken-3">学术研究</span>
+            <div class="card-content"><span class="card-title green-text text-darken-3">学术会议</span>
                 <div class="card-body">
                     <ul>
                         <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>

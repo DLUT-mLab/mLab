@@ -3,7 +3,7 @@ from material.frontend import Module
 
 
 class Platform(Module):
-    order = 9
+    order = 8
     icon = "mdi-file-cloud-done"
 
     @property

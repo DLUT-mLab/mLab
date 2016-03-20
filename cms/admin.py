@@ -24,19 +24,41 @@ class Category(admin.ModelAdmin):
     pass
 
     
+class MemberShipInline(admin.TabularInline):
+    model = Project.members.through
+    verbose_name = u'参与成员'
+    verbose_name_plural = u'参与成员'
+
+
 @admin.register(Member)
 class MemberAdmin(RichEditorModelAdmin):
+    date_hierarchy = 'start_date'
     list_display = ('name', 'member_type', 'start_date')
+    list_filter = ('member_type',)
     pass
 
 
 @admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(RichEditorModelAdmin):
+    date_hierarchy = 'start_date'
+    list_filter = ('project_type',)
+    list_display = ('name', 'project_type', 'start_date')
+    filter_horizontal = ('members',)
+    inlines = [ MemberShipInline, ]
+    exclude = ['members',]
     pass
+
 
 @admin.register(Attachment)
 class AttachmentAdmin(RichEditorModelAdmin):
-    list_display = ('file_type', 'name', 'intro', 'content')
+    list_display = ('file_type', 'name', 'intro', 'content', 'pub_date')
     pass
+
+
+# @admin.register(Membership)
+# class MemberShipAdmin(RichEditorModelAdmin):
+#     pass
+
+
 
 

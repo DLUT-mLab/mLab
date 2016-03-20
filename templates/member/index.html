@@ -16,23 +16,45 @@
         <div class="card card-panel">
             <span class="card-title green-text text-darken-3">在读硕士</span>
             <div class="card-body">
-                <ul>
+                <table>
+                    <tbody>
+                    <tr>
                     {% for master in member_master %}
-                    <li>
-                        <a href="/member/{{ master.id }}" target="_blank">{{ master.name }}</a> - {{ master.start_date }}</li>
+                        <td style="width: 25%">
+                        • <a href="{{ master.url }}" target="_blank">{{ master.name }}
+                        </a> <i class="mdi-action-open-in-new"></i> - 
+                        {{ master.start_date|date:"Y级" }}</td>
+                        {% if forloop.counter|divisibleby:'4' %}
+                        <tr> 
+                        {% endif %}
+                    {% empty %}
+                    <h5>没有成员</h5>
                     {% endfor %}
-                </ul>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card card-panel">
             <span class="card-title green-text text-darken-3">在读博士</span>
             <div class="card-body">
-                <ul>
+                <table>
+                    <tbody>
+                    <tr>
                     {% for master in member_doctor %}
-                    <li>
-                        <a href="/member/{{ master.id }}" target="_blank">{{ master.name }}</a> - {{ master.start_date }}</li>
+                        <td style="width: 25%">
+                        • <a href="{{ master.url }}" target="_blank">{{ master.name }}
+                        </a> <i class="mdi-action-open-in-new"></i> - 
+                        {{ master.start_date|date:"Y级" }}</td>
+                        {% if forloop.counter|divisibleby:'4' %}
+                        <tr> 
+                        {% endif %}
+                    {% empty %}
+                    <h5>没有成员</h5>
                     {% endfor %}
-                </ul>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -47,7 +69,14 @@
                         <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
                     </ul>
 
-                    <span class="card-title">2013届</span>
+                    <span class="card-title">2011届</span>
+                    <ul>
+                        <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
+                        <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
+                        <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
+                    </ul>
+
+                    <span class="card-title">2010届</span>
                     <ul>
                         <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
                         <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>

@@ -6,3 +6,26 @@
 ul.side-nav.fixed.module-menu li a{
     font-size: 14px;
 }
+
+/* body{
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0px;
+    padding: 0px;
+} */
+
+#wrap{
+    min-height: 100%;
+    height: auto;
+    padding: 0px;
+    // margin-bottom: -100px;
+    margin-top: 0px;
+}
+
+#footer{
+    height: 80px;
+    bottom: 0;
+    position: relative;
+}
+

@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{% static "css/wangEditor.min.css"%}">
+<script type="text/javascript" src="{% static "js/jquery-2.2.0.min.js" %}"></script>
 <script type="text/javascript" src="{% static "js/wangEditor.min.js" %}"></script>
 <script type="text/javascript" src="{% static "js/myeditor.js" %}"></script>
 
@@ -12,5 +13,20 @@
         });
     });
 </script>
+
+<style>
+.wangEditor-container .clearfix{
+    clear: inherit;
+}
+
+.wangEditor-container{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.wangEditor-container.wangEditor-fullscreen{
+    margin-top: 0;
+}
+</style>
 {% endblock %}
 

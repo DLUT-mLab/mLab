@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% block extrahead %}
 <style>
-    .fr{
-        float: right;
-    }
+.fr{
+    float: right;
+}
+
+.pagination>.col {
+                height: 68px;
+                line-height: 48px;
+                padding-top: 10px;
+            }
 </style>
 {% endblock%}
 
@@ -14,11 +20,9 @@
 {% block content %}
 <div class="row">
 <div class="col l8 m12" >
-        <div class="card data-card">
-            <div class="card-content">
-                <div class="card-title black-text">
-                    最新发布
-                </div>
+        <div class="card card-panel">
+            <span class="card-title green-text text-darken-3">最新发布</span>
+            <div class="card-body">
 
                <ul>
                     <li>
@@ -70,13 +74,13 @@
                         <span class="fr">2015-09-03</span>
                     </li>
                 </ul>
-                
+
                 <div class="row pagination">
                     <div class="col s12 right-align">1-6 of 6<span style="padding-left:30px" class="right">
                         
                         <i class="mdi-image-navigate-before small grey-text"></i>
                         &nbsp;
-                        <i class="mdi-image-navigate-next small grey-text"></i>
+                        <a href=""><i class="mdi-image-navigate-next small"></i></a>
                         
                         </span>
                     </div>

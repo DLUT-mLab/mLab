@@ -3,7 +3,7 @@ from material.frontend import Module
 
 
 class Album(Module):
-    order = 9
+    order = 7
     icon = "mdi-action-perm-media"
 
     @property
