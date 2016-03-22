@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 
-
+{% load extras %}
 <style>
 img.cover{
     width: 100%;
@@ -44,9 +44,22 @@ img.cover{
 
 
     <div class="col l4 m12">
-        <div class="card-panel">
-            <div class="card-title">Django-Viewflow</div>
-            <p>Easy to use, programmable workflow framework on top of Django</p>
+        <div class="row card card-panel">
+             <span class="card-title green-text text-darken-3">热门报告</span>
+            <div class="card-body">
+                <ul>
+                    {% for report in popular_report %}
+                    <li class="news-item"><h6><span class="green-text text-darken-2" style="font-size: 20px">• </span>
+                    <a href="{{ report.url }}" target="_blank" title="{{ report.title }}">
+                            {{ report.title|truncatehanzi:"20" }}
+                        </a>
+                        </h6>
+                    </li>
+
+                    {% endfor %}
+                </ul>
+
+            </div>
         </div>
     </div>
 

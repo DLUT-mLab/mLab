@@ -13,8 +13,18 @@
             <div class="card-body">
 
                 {{ report.content|safe }}
+
+                
                 
             </div>
+
+            <div class="divider"></div>
+            <div class="row right-align" style="margin:10px">
+            <span class="grey-text"><i>阅读量: {{ report.read_count }}</i></span>
+                
+            </div>
+
+
         </div>
 
     </div>

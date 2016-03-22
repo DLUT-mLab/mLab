@@ -16,6 +16,9 @@ class RichEditorModelAdmin(admin.ModelAdmin):
 class ArticleAdmin(RichEditorModelAdmin):
     date_hierarchy = 'pub_date'
     list_display = ('title', 'author', 'category', 'pub_date')
+    list_filter = ('category__name',)
+    exclude = ['read_count', ]
+
 
 
 @admin.register(Category)

@@ -3,13 +3,17 @@ from material.frontend import Module
 from django.conf.urls import url
 from django.views.generic import TemplateView
 from material import LayoutMixin
-from cms import models
+from cms.models import Article
+
 
 
 class HomeView(LayoutMixin, TemplateView):
-    title = "New Shipment"
     template_name="home/index.html"
-    haha = "find you"
+    def get_context_data(self, **kargs):
+        context = super(HomeView, self).get_context_data(**kargs)
+        context['latest_news'] = Article.objects.filter(category__name=u'新闻动态').order_by('pub_date').reverse()[:10]
+        context['latest_conference'] = Article.objects.filter(category__name=u'学术会议').order_by('pub_date').reverse()[:10]
+        return context
     
 
 class HomeModule(Module):

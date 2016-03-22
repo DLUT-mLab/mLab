@@ -20,6 +20,8 @@ class Article(models.Model):
     # cover_url = models.CharField(u'封面图链接', max_length=400, blank=True, null=True)
     content = models.TextField(u'正文')
 
+    read_count = models.IntegerField(u'阅读量', default=0, null=True)
+
     def __unicode__(self):
         return self.title + '--' + self.author.name
 
@@ -74,7 +76,7 @@ class Member(models.Model):
         verbose_name_plural = u'成员'
 
     name = models.CharField(u'姓名', max_length=50)
-    member_type = models.CharField(u'类别', max_length=50, choices=MEMBER_TYPE, default=MASTER)
+    member_type = models.CharField(u'类别', max_length=50, choices=MEMBER_TYPE, default=MASTER, db_index=True)
     start_date = models.DateField(u'入学时间', auto_now=False)
     intro = models.TextField(u'简介', blank=True, null=True)
 
@@ -102,7 +104,7 @@ class Project(models.Model):
     )
 
     name = models.CharField(u'名称', max_length=100)
-    project_type = models.CharField(u'类型', max_length=50, choices=TYPE, default=PROJECT)
+    project_type = models.CharField(u'类型', max_length=50, choices=TYPE, default=PROJECT, db_index=True)
     ongoing = models.BooleanField(u'是否正在进行', default=False)
     intro = models.TextField(u'简介', blank=True, null=True)
     start_date = models.DateField(u'开始时间', auto_now=True)
@@ -144,7 +146,7 @@ class Attachment(models.Model):
         verbose_name = u'文件'
         verbose_name_plural = u'文件'
     name = models.CharField('名称', max_length=200)
-    file_type = models.CharField('文件类型', max_length=50, choices=FILE_TYPE, default=DATA)
+    file_type = models.CharField('文件类型', max_length=50, choices=FILE_TYPE, default=DATA, db_index=True)
     intro = models.TextField(u'简介', blank=True, null=True)
     content = models.FileField(u'内容', upload_to='uploads/')
     pub_date = models.DateTimeField(u'发布日期', auto_now=True)

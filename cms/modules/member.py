@@ -5,6 +5,8 @@ from django.views.generic import TemplateView
 from material import LayoutMixin
 from cms.models import Member
 from django.shortcuts import render
+from django.http import Http404
+
 
 
 class HomeView(LayoutMixin, TemplateView):
@@ -26,7 +28,10 @@ class MemberView(LayoutMixin, TemplateView):
     def get_context_data(self, **kwargs):
         print self.kwargs['member_id']
         context = super(MemberView, self).get_context_data(**kwargs)
-        context['member'] = Member.objects.get(id=self.kwargs['member_id'])
+        try:
+            context['member'] = Member.objects.get(id=self.kwargs['member_id'])
+        except Member.DoesNotExist:
+            raise Http404
         return context
 
 

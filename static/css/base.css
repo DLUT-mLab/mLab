@@ -29,3 +29,19 @@ ul.side-nav.fixed.module-menu li a{
     position: relative;
 }
 
+
+li.news-item h6{
+    height: 1.5em;
+    line-height: 1.5em;
+    font-size: 16px;
+}
+
+li.news-item a{
+    color: #000;
+}
+
+li.news-item a:hover{
+    color: #4CAF50;
+}
+
+
