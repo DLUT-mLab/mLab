@@ -3,6 +3,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+import html2text
+import re
 
 # Create your models here.
 class Article(models.Model):
@@ -20,6 +22,25 @@ class Article(models.Model):
 
     def __unicode__(self):
         return self.title + '--' + self.author.name
+
+    @property
+    def url(self):
+        return '/report/%s/' % self.id
+
+    @property
+    def short_content(self):
+        return html2text.html2text(self.content)[:140]
+
+    @property
+    def cover_url(self):
+        pattern = re.compile(r'<img.*?src="(.*?)"')
+        match = pattern.search(self.content)
+        if match:
+            return match.group(1)
+        return ''
+    
+    
+    
     
 
 class Category(models.Model):
@@ -29,6 +50,7 @@ class Category(models.Model):
         verbose_name_plural = u'文章分类'
 
     name = models.CharField(u'分类名称', max_length=50)
+    url = models.CharField(u'分类链接', max_length=50)
 
     def __unicode__(self):
         return self.name

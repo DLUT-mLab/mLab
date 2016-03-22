@@ -2,9 +2,10 @@
 from material.frontend import Module
 
 
-class Platform(Module):
+class PlatformModule(Module):
     order = 8
     icon = "mdi-file-cloud-done"
+    slug = 'platform'
 
     @property
     def label(self):

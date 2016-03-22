@@ -3,7 +3,7 @@ from material.frontend import Module
 from django.conf.urls import url
 from django.views.generic import TemplateView
 from material import LayoutMixin
-from cms import models
+from cms.models import Member
 from django.shortcuts import render
 
 
@@ -13,9 +13,9 @@ class HomeView(LayoutMixin, TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['member_teacher'] = models.Member.objects.filter(member_type=models.Member.TEACHER)
-        context['member_master'] = models.Member.objects.filter(member_type=models.Member.MASTER).order_by('start_date')
-        context['member_doctor'] = models.Member.objects.filter(member_type=models.Member.DOCTOR).order_by('start_date')
+        context['member_teacher'] = Member.objects.filter(member_type=Member.TEACHER)
+        context['member_master'] = Member.objects.filter(member_type=Member.MASTER).order_by('start_date')
+        context['member_doctor'] = Member.objects.filter(member_type=Member.DOCTOR).order_by('start_date')
         return context
 
 
@@ -30,9 +30,10 @@ class MemberView(LayoutMixin, TemplateView):
         return context
 
 
-class Member(Module):
+class MemberModule(Module):
     order = 6
     icon = "mdi-action-account-child"
+    slug = 'member'
 
     @property
     def label(self):

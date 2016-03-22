@@ -230,14 +230,14 @@ MEDIA_URL = '/media/'
 
 # define material framework modules
 MODULES = (
-    'cms.modules.home.Home',
-    'cms.modules.news.News',
-    'cms.modules.research.Research',
-    'cms.modules.project.Project',
-    'cms.modules.report.Report',
-    'cms.modules.member.Member',
-    'cms.modules.album.Album',
-    'cms.modules.files.Files',
-    'cms.modules.platform.Platform',
+    'cms.modules.home.HomeModule',
+    'cms.modules.news.NewsModule',
+    'cms.modules.research.ResearchModule',
+    'cms.modules.project.ProjectModule',
+    'cms.modules.report.ReportModule',
+    'cms.modules.member.MemberModule',
+    'cms.modules.album.AlbumModule',
+    'cms.modules.files.FilesModule',
+    'cms.modules.platform.PlatformModule',
 )
 

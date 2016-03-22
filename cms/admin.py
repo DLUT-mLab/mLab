@@ -19,8 +19,8 @@ class ArticleAdmin(RichEditorModelAdmin):
 
 
 @admin.register(Category)
-class Category(admin.ModelAdmin):
-    list_display = ('name',)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'url')
     pass
 
     

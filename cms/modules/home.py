@@ -12,9 +12,10 @@ class HomeView(LayoutMixin, TemplateView):
     haha = "find you"
     
 
-class Home(Module):
+class HomeModule(Module):
     order = 1
     icon = "mdi-action-account-balance"
+    slug = 'home'
 
     @property
     def label(self):

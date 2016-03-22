@@ -20,9 +20,10 @@ class HomeView(LayoutMixin, TemplateView):
 
 
 
-class Research(Module):
+class ResearchModule(Module):
     order = 3
     icon = "mdi-action-pageview"
+    slug = 'research'
 
     @property
     def label(self):

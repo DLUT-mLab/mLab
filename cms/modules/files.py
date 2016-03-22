@@ -2,9 +2,10 @@
 from material.frontend import Module
 
 
-class Files(Module):
+class FilesModule(Module):
     order = 10
     icon = "mdi-action-work"
+    slug = 'files'
 
     @property
     def label(self):

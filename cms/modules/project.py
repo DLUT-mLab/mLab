@@ -2,9 +2,10 @@
 from material.frontend import Module
 
 
-class Project(Module):
+class ProjectModule(Module):
     order = 4
     icon = "mdi-action-work"
+    slug = 'project'
 
     @property
     def label(self):

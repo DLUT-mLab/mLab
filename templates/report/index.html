@@ -4,6 +4,8 @@
 <a href="/home/">首页</a> ⟩<a class="active">{{current_module.label}}</a>
 {% endblock %}
 {% block content %}
+
+
 <style>
 img.cover{
     width: 100%;
@@ -12,56 +14,30 @@ img.cover{
 </style>
 <div class="row">
 <div class="col l8 m12">
-        <div class="card data-card">
-            <div class="card-content row">
-                <div class="col l9 m12">
-                    <a href="">张林伟</a> <span>1天前</span>
-                    <div class="card-title">
-                        <a href="">这是标题123</a>
-                    </div>
-                    <div>
-                        测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章
-                    </div>
-                </div>
-                <div class="col l3 m12">
-                    <img class="cover" src="/static/img/002.jpg" alt="">
-                </div>
-            </div>
-        </div>
 
+        {% for report in latest_report %}
         <div class="card data-card">
             <div class="card-content row">
                 <div class="col l9 m12">
-                    <a href="">张林伟</a> <span>1天前</span>
-                    <div class="card-title">
-                        <a href="">这是标题123</a>
-                    </div>
+                    <a href="">{{report.author.name}}</a> 发表于 <span>
+                    {{ report.pub_date|date:"Y-m-d H:i:s"}}</span>
+                    <h5>
+                        <a href="{{ report.url }}">{{ report.title }}</a>
+                    </h5>
                     <div>
-                        测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章
+                        {{ report.short_content }}
                     </div>
                 </div>
+                {% if report.cover_url %}
                 <div class="col l3 m12">
-                    <img class="cover" src="/static/img/002.jpg" alt="">
+                    <img class="cover" src="{{ report.cover_url}}" alt="">
                 </div>
+                {% endif %}
             </div>
         </div>
-
-        <div class="card data-card">
-            <div class="card-content row">
-                <div class="col l9 m12">
-                    <a href="">张林伟</a> <span>1天前</span>
-                    <div class="card-title">
-                        <a href="">这是标题123</a>
-                    </div>
-                    <div>
-                        测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章测试学术文章
-                    </div>
-                </div>
-                <div class="col l3 m12">
-                    <img class="cover" src="/static/img/002.jpg" alt="">
-                </div>
-            </div>
-        </div>
+        {% empty %}
+        <h5>这里是空的</h5>
+        {% endfor %}
 
 
 </div>

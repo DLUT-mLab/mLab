@@ -4,9 +4,25 @@
 
 {% block content %}
 
-{{ member.id }}
-{{ member.name }}
-{{ member.intro }}
+<div class="row">
+    <div class="col l8 m12">
+        <div class="card card-panel">
+            <span class="card-title green-text text-darken-3">{{ member.name }}</span>
+            <div class="card-body">
+                <h5>入学时间</h5>
+                {{ member.start_date|date:"Y年m月"}}
 
+                <h5>简介</h5>
+                {% if member.intro %}
+                {{ member.intro|safe}}
+                {% else %}
+                暂无
+                {% endif %}
+                
+            </div>
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}

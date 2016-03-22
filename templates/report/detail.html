@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block breadcrumbs_items %}
+<a href="/home/">首页</a> ⟩<a href="/report/">{{ report.category }}</a> ⟩<a class="active">{{report.title}}</a> 
+{% endblock %} 
+
+{% block content %}
+
+<div class="row">
+    <div class="col l10 m12">
+        <div class="card card-panel">
+            <span class="card-title green-text text-darken-3">
+            {{ report.title }}</span>
+            <p class="" ><a href="{{ report.author.url }}">{{report.author.name}}</a> 发表于 {{ report.pub_date }}</p>
+            <div class="card-body">
+
+                {{ report.content|safe }}
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

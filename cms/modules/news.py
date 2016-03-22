@@ -2,12 +2,13 @@
 from material.frontend import Module
 
 
-class News(Module):
+class NewsModule(Module):
     """
     asdjflajsldkjf
     """
     order = 2
     icon = "mdi-action-assignment"
+    slug = 'news'
 
     @property
     def label(self):
