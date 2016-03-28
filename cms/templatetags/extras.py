@@ -1,5 +1,6 @@
 from django.template import Library
-from django.template.defaultfilters import stringfilter 
+from django.template.defaultfilters import stringfilter
+from django import template
 
 register = Library()
 
@@ -26,13 +27,13 @@ def get_range(value):
     return range(value)
 
 
-@stringfilter 
-def truncatehanzi(value, arg):     
-    """     
-    Truncates a string after a certain number of words including     
-    alphanumeric and CJK characters.      
-    Argument: Number of words to truncate after.     
-    """     
+@stringfilter
+def truncatehanzi(value, arg):
+    """
+    Truncates a string after a certain number of words including
+    alphanumeric and CJK characters.
+    Argument: Number of words to truncate after.
+    """
     try:
         bits = []
         for x in arg.split(u':'):
@@ -45,6 +46,32 @@ def truncatehanzi(value, arg):
         return value[slice(*bits)]
 
     except (ValueError, TypeError):
-        return value # Fail silently.
-    
+        return value  # Fail silently.
+
 register.filter('truncatehanzi', truncatehanzi)
+
+
+class SetVarNode(template.Node):
+
+    def __init__(self, var_name, var_value):
+        self.var_name = var_name
+        self.var_value = var_value
+
+    def render(self, context):
+        try:
+            value = template.Variable(self.var_value).resolve(context)
+        except template.VariableDoesNotExist:
+            value = ""
+        context[self.var_name] = value
+        return u""
+
+def set_var(parser, token):
+    """
+        {% set <var_name>  = <var_value> %}
+    """
+    parts = token.split_contents()
+    if len(parts) < 4:
+        raise template.TemplateSyntaxError("'set' tag must be of the form:  {% set <var_name>  = <var_value> %}")
+    return SetVarNode(parts[1], parts[3])
+
+register.tag('set', set_var)

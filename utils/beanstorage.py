@@ -7,4 +7,4 @@ class BeansStorage(Storage):
         pass
 
 
-    
+

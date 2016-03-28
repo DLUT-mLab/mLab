@@ -4,15 +4,13 @@ from django.conf.urls import url
 from django.views.generic import TemplateView
 from material import LayoutMixin
 from cms.models import Member
-from django.shortcuts import render
 from django.http import Http404
-
 
 
 class HomeView(LayoutMixin, TemplateView):
     title = "成员介绍"
     template_name="member/index.html"
-    
+
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['member_teacher'] = Member.objects.filter(member_type=Member.TEACHER)
@@ -49,4 +47,3 @@ class MemberModule(Module):
             url(r'^$', HomeView.as_view(), name='index'),
             url(r'^(?P<member_id>[0-9]+)/$', MemberView.as_view(), name='member'),
         ]
-

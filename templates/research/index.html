@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block breadcrumbs_items %}
-<a href="/home/">首页</a> ⟩<a class="active">{{current_module.label}}</a> {% endblock %} 
+<a href="/home/">首页</a> ⟩<a class="active">{{current_module.label}}</a> {% endblock %}
 
 
 {% block content %}
@@ -19,7 +19,7 @@
                  <h5>成员</h5>
                 <div class="intro-content">
                     {% for member in research.members.all %}
-                    <a href="{{ member.url }}">{{ member.name}}</a>{% if not forloop.last %}，{% endif %} 
+                    <a href="{{ member.url }}">{{ member.name}}</a>{% if not forloop.last %}，{% endif %}
                     {% empty %}
                     暂无成员
                     {% endfor %}
@@ -34,34 +34,44 @@
         {% empty %}
         <h4>暂无研究方向</h4>
         {% endfor %}
-        
+
     </div>
 
 
+    {% load extras %}
     <div class="col l4 m12">
         <div class="card">
             <div class="card-content"><span class="card-title green-text text-darken-3">历史科研方向</span>
                 <div class="card-body">
-                    <span class="card-title">2012年</span>
-                    <ul>
-                        <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
-                        <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
-                        <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
-                    </ul>
+                    <!--
+                    {% with year="" %}
+                    {% for research in research_past %}
+                        {% with temp_year=research.end_date|date:"Y年" %}
+                        {% if year and year ==  temp_year %}
+                        <li><a href="{{ research.url }}">{{ research.name }}</a></li>
+                        {% else %}
+                        {% set year = temp_year %}
+                        </ul>
+                        <span class="card-title">{{ year }}</span>
+                        <ul>
+                            <li><a href="{{ research.url }}">{{ research.name }}</a></li>
+                        {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                    {% endwith %}
+                    --!>
 
-                    <span class="card-title">2011年</span>
-                    <ul>
-                        <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
-                        <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
-                        <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
-                    </ul>
 
-                    <span class="card-title">2010年</span>
-                    <ul>
-                        <li>孙晓玲-作者合作网络的结构及其演化与预测研究</li>
-                        <li>徐博-基于蛋白质关系网络的复合物抽取研究</li>
-                        <li>王健-面向生物医学领域的信息抽取关键技术研究</li>
+                    {% for research in research_past %}
+                        {% ifchanged research.end_date|date:"Y年" %}
                     </ul>
+                        <span class="card-title">{{ research.end_date|date:"Y年" }}</span>
+                        {% endifchanged %}
+                        <ul>
+                            <li><a href="{{ research.url }}">{{ research.name }}</a></li>
+
+                    {% endfor %}
+                </ul>
                 </div>
             </div>
         </div>

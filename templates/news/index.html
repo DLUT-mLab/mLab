@@ -32,7 +32,7 @@
                     <li class="news-item">
                     <h6><span class="green-text text-darken-2" style="font-size: 20px">• </span>
                     <a href="{{ news.url }}" target="_blank" title="{{ news.title }}">
-                            {{ news.title|truncatechars:40 }}
+                            {{ news.title }}
                         </a>
                         <span class="fr">{{ news.pub_date|date:"Y-m-d H:i:m"}}</span>
                         </h6>
@@ -43,11 +43,11 @@
 
                 <div class="row pagination" style="margin-bottom: 0">
                     <div class="col s12 right-align">1-{{ latest_news.count}} of {{ latest_news.count}}<span style="padding-left:30px" class="right">
-                        
+
                         <i class="mdi-image-navigate-before small grey-text"></i>
                         &nbsp;
                         <a href=""><i class="mdi-image-navigate-next small"></i></a>
-                        
+
                         </span>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     {% for news in popular_news %}
                     <li class="news-item"><h6><span class="green-text text-darken-2" style="font-size: 20px">• </span>
                     <a href="{{ news.url }}" target="_blank" title="{{ news.title }}">
-                            {{ news.title|truncatehanzi:"20" }}
+                            {{ news.title }}
                         </a>
                         <!-- <span class="fr">{{ news.pub_date|date:"Y-m-d H:i:m"}}</span> -->
                         </h6>
@@ -76,6 +76,5 @@
             </div>
         </div>
     </div>
-
 </div>
 {% endblock %}

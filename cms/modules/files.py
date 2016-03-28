@@ -10,4 +10,3 @@ class FilesModule(Module):
     @property
     def label(self):
         return u"资料下载"
-

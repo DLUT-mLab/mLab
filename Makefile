@@ -16,4 +16,4 @@ beansdb:
 
 clean:
 	find -type f -name '*.pyc' -delete
-	rm -rf venv/  
+	rm -rf venv/

@@ -6,6 +6,7 @@ from django.db import models
 import html2text
 import re
 
+
 # Create your models here.
 class Article(models.Model):
 
@@ -14,7 +15,7 @@ class Article(models.Model):
         verbose_name_plural = u'文章'
 
     title = models.CharField(u'标题', max_length=400)
-    author = models.ForeignKey('Member', verbose_name=u'作者', null=True, on_delete=models.SET_NULL)  #when author deleted set null 
+    author = models.ForeignKey('Member', verbose_name=u'作者', null=True, on_delete=models.SET_NULL)  # when author deleted set null
     category = models.ForeignKey('Category', verbose_name=u'文章分类', on_delete=models.CASCADE)
     pub_date = models.DateTimeField(u'发布日期', auto_now=True)
     # cover_url = models.CharField(u'封面图链接', max_length=400, blank=True, null=True)
@@ -27,7 +28,7 @@ class Article(models.Model):
 
     @property
     def url(self):
-        return '/report/%s/' % self.id
+        return '/report/%s/' % self.id if self.category.name==u'学术报告' else '/news/%s/' % self.id
 
     @property
     def short_content(self):
@@ -40,10 +41,7 @@ class Article(models.Model):
         if match:
             return match.group(1)
         return ''
-    
-    
-    
-    
+
 
 class Category(models.Model):
 
@@ -65,7 +63,7 @@ class Member(models.Model):
     MASTER = "master"
     DOCTOR = "doctor"
     MEMBER_TYPE = (
-        (TEACHER, u'指导教师'), 
+        (TEACHER, u'指导教师'),
         (BACHELOR, u'在读本科生'),
         (MASTER, u'在读硕士'),
         (DOCTOR, u'在读博士'),
@@ -86,8 +84,6 @@ class Member(models.Model):
     @property
     def url(self):
         return '/member/%s/' % (self.id, )
-    
-
 
 
 class Project(models.Model):
@@ -105,9 +101,9 @@ class Project(models.Model):
 
     name = models.CharField(u'名称', max_length=100)
     project_type = models.CharField(u'类型', max_length=50, choices=TYPE, default=PROJECT, db_index=True)
-    ongoing = models.BooleanField(u'是否正在进行', default=False)
     intro = models.TextField(u'简介', blank=True, null=True)
-    start_date = models.DateField(u'开始时间', auto_now=True)
+    start_date = models.DateField(u'开始时间', null=False)
+    end_date = models.DateField(u'结束时间', blank=True, null=True)
     members = models.ManyToManyField(
         'Member',
         verbose_name=u'成员',
@@ -118,6 +114,14 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def ongoing(self):
+        return len(self.end_date)==0
+
+    @property
+    def url(self):
+        return '/project/%s/' % self.id if self.project_type == self.PROJECT else '/research/%s/' % self.id
 
 
 class Membership(models.Model):
@@ -138,7 +142,7 @@ class Attachment(models.Model):
     DATA = 'data'
     PROGRAM = 'program'
     FILE_TYPE = (
-        (DATA, u'数据集'), 
+        (DATA, u'数据集'),
         (PROGRAM, u'程序工具'),
     )
 
@@ -151,11 +155,5 @@ class Attachment(models.Model):
     content = models.FileField(u'内容', upload_to='uploads/')
     pub_date = models.DateTimeField(u'发布日期', auto_now=True)
 
-
     def __unicode__(self):
         return self.name
-
-
-
-
-

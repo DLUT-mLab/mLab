@@ -10,4 +10,3 @@ class AlbumModule(Module):
     @property
     def label(self):
         return u"相册"
-

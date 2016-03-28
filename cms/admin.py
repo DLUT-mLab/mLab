@@ -26,7 +26,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'url')
     pass
 
-    
+
 class MemberShipInline(admin.TabularInline):
     model = Project.members.through
     verbose_name = u'参与成员'

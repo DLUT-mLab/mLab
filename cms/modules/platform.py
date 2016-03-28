@@ -10,4 +10,3 @@ class PlatformModule(Module):
     @property
     def label(self):
         return u"在线预测平台"
-

@@ -7,19 +7,24 @@
 
 {% load extras %}
 <style>
-img.cover{
+.report-item img.cover{
     width: 100%;
     height: 100%;
 }
+
+.report-item a:hover{
+    text-decoration: underline;
+}
+
 </style>
 <div class="row">
 <div class="col l8 m12">
 
         {% for report in latest_report %}
-        <div class="card data-card">
+        <div class="report-item card data-card">
             <div class="card-content row">
                 <div class="col l9 m12">
-                    <a href="">{{report.author.name}}</a> 发表于 <span>
+                    <a href="">{{report.author.name}}</a> 发表于 <span class="green-text">
                     {{ report.pub_date|date:"Y-m-d H:i:s"}}</span>
                     <h5>
                         <a href="{{ report.url }}">{{ report.title }}</a>
@@ -51,7 +56,7 @@ img.cover{
                     {% for report in popular_report %}
                     <li class="news-item"><h6><span class="green-text text-darken-2" style="font-size: 20px">• </span>
                     <a href="{{ report.url }}" target="_blank" title="{{ report.title }}">
-                            {{ report.title|truncatehanzi:"20" }}
+                            {{ report.title }}
                         </a>
                         </h6>
                     </li>

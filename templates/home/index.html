@@ -1,11 +1,11 @@
-{% extends 'base.html' %} 
-{% block title %}大连理工大学XXX实验室{% endblock %} 
+{% extends 'base.html' %}
+{% block title %}大连理工大学XXX实验室{% endblock %}
 {% block page_title %}<a href="/home/">XXX实验室</a>{% endblock %} {% block content %}
 {% block extrahead %}
 {% load static %}
 <script src="{% static 'js/jquery.jcarousel.min.js' %}"></script> <!-- but with the right path! -->
 <link rel="stylesheet" href="{% static 'css/unslider.css' %}">
-<link rel="stylesheet" href="{% static 'css/unslider-dots.css' %}">    
+<link rel="stylesheet" href="{% static 'css/unslider-dots.css' %}">
 
 <style>
 p{
@@ -199,7 +199,7 @@ $(function() {
                         {% for news in latest_news %}
                         <li class="news-item"><h6><span class="green-text text-darken-2" style="font-size: 20px">• </span>
                         <a href="{{ news.url }}" target="_blank" title="{{ news.title }}">
-                                {{ news.title|truncatehanzi:"20" }}
+                                {{ news.title }}
                             </a>
                             <!-- <span class="fr">{{ news.pub_date|date:"Y-m-d H:i:m"}}</span> -->
                             </h6>
@@ -215,13 +215,13 @@ $(function() {
         </div>
 
         <div class="row card">
-            <div class="card-content"><span class="card-title green-text text-darken-3">学术会议</span>
+            <div class="card-content"><span class="card-title green-text text-darken-3">近期学术会议</span>
                 <div class="card-body">
                     <ul>
                         {% for news in latest_conference %}
                         <li class="news-item"><h6><span class="green-text text-darken-2" style="font-size: 20px">• </span>
                         <a href="{{ news.url }}" target="_blank" title="{{ news.title }}">
-                                {{ news.title|truncatehanzi:"20" }}
+                                {{ news.title}}
                             </a>
                             <!-- <span class="fr">{{ news.pub_date|date:"Y-m-d H:i:m"}}</span> -->
                             </h6>
@@ -230,7 +230,6 @@ $(function() {
                         <h5>暂无新闻</h5>
                         {% endfor %}
                     </ul>
-                    <div class="row right"><a href="/news/">更多>></a></div>
 
                 </div>
         </div>

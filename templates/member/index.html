@@ -22,10 +22,10 @@
                     {% for master in member_master %}
                         <td style="width: 25%">
                         • <a href="{{ master.url }}" target="_blank">{{ master.name }}
-                        </a> <i class="mdi-action-open-in-new"></i> - 
+                        </a> <i class="mdi-action-open-in-new"></i> -
                         {{ master.start_date|date:"Y级" }}</td>
                         {% if forloop.counter|divisibleby:'4' %}
-                        <tr> 
+                        <tr>
                         {% endif %}
                     {% empty %}
                     <h5>没有成员</h5>
@@ -44,10 +44,10 @@
                     {% for master in member_doctor %}
                         <td style="width: 25%">
                         • <a href="{{ master.url }}" target="_blank">{{ master.name }}
-                        </a> <i class="mdi-action-open-in-new"></i> - 
+                        </a> <i class="mdi-action-open-in-new"></i> -
                         {{ master.start_date|date:"Y级" }}</td>
                         {% if forloop.counter|divisibleby:'4' %}
-                        <tr> 
+                        <tr>
                         {% endif %}
                     {% empty %}
                     <h5>没有成员</h5>
