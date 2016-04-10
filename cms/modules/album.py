@@ -7,6 +7,8 @@ class AlbumModule(Module):
     icon = "mdi-action-perm-media"
     slug = 'album'
 
+
+
     @property
     def label(self):
         return u"相册"

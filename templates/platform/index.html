@@ -6,57 +6,31 @@
 
 {% block content %}
 <div class="row">
-<div class="col l11 m12" >
+    <div class="col l10 m12" >
         <div class="card-panel">
-            <h4>计算程序1</h4>
-            <a href="https://github.com/viewflow/viewflow" target="_blank"><i class="glyphicon glyphicon-edit"></i> Source code on Github</a>
-            <br><br>
-            <ul>
+            <h4><a href="/platform/ppimirfs/" target="_blank">PPImiRFS</a></h4>
+            <p>
+            <h5>
+                DESCRIPTION
+            </h5>
+            Plant microRNAs (miRNAs) play critical roles in response to abiotic and biotic stresses. But the functions of most plant miRNAs are still unknown. Some methods have been proposed to infer the potential functions of miRNAs by comparing the functional similarities among miRNAs.
+            PPImiRFS is based on the protein-protein interaction network with GO semantic similarity weighting and graph theoretic property.
+            </p>
+            <p>
+            <h5> PPImiRFS works in three steps: </h5>
+            <ol>
                 <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/helloworld" target="_blank">HelloWorld</a>  - Viewflow introduction sample</li>
+                Input one pair of predicted miRNAs </li>
                 <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/shipment" target="_blank">Shipment</a> - Automate shipment process for ecommerce website</li>
+                Extract the target gene set of each miRNA of the predicted miRNA pair</li>
                 <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/customnode" target="_blank">Dynamic split</a> -  Custom flow node example</li>
-            </ul>
-            <h5>Standalone demo projects</h5>
-            <ul>
-                <li>
-                    <a href="https://github.com/kmmbvnr/viewflow-demo/tree/master/ecommerce" target="_blank">Ecommerce</a> - Delivery department automation with viewflow and Django Cartridge Ecommerce</li>
-                <li>
-                    <a href="https://github.com/kmmbvnr/viewflow-demo/tree/master/customauth" target="_blank">Customization</a> - Custom auth model and django-guardian for object level permissions, no viewsite</li>
-            </ul>
+                Compute the functional similarity score of the two target gene sets, namely, the functional similarity score of the two miRNAs
+                </li> 
+            </ol>
+            </p>
+
         </div>
 
-        <div class="card-panel">
-            <h4>计算程序2</h4>
-            <a href="https://github.com/viewflow/viewflow" target="_blank"><i class="glyphicon glyphicon-edit"></i> Source code on Github</a>
-            <br><br>
-            <ul>
-                <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/helloworld" target="_blank">HelloWorld</a>  - Viewflow introduction sample</li>
-                <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/shipment" target="_blank">Shipment</a> - Automate shipment process for ecommerce website</li>
-                <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/customnode" target="_blank">Dynamic split</a> -  Custom flow node example</li>
-            </ul>
-            <h5>Standalone demo projects</h3>
-            <ul>
-                <li>
-                    <a href="https://github.com/kmmbvnr/viewflow-demo/tree/master/ecommerce" target="_blank">Ecommerce</a> - Delivery department automation with viewflow and Django Cartridge Ecommerce</li>
-                <li>
-                    <a href="https://github.com/kmmbvnr/viewflow-demo/tree/master/customauth" target="_blank">Customization</a> - Custom auth model and django-guardian for object level permissions, no viewsite</li>
-            </ul>
-        </div>
     </div>
-
-
-   <!--  <div class="col l4 m12">
-       <div class="card-panel">
-           <div class="card-title">Django-Viewflow</div>
-           <p>Easy to use, programmable workflow framework on top of Django</p>
-       </div>
-   </div>
-    -->
 </div>
 {% endblock %}

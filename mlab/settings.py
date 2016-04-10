@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from utils.dbclient import Beansdb
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -47,9 +48,11 @@ INSTALLED_APPS = [
 
     'django_summernote',
     'cms',
-
+    'djcelery',
+    'kombu.transport.django',
 
 ]
+
 
 # MATERIAL_ADMIN_SITE = 'cms.admin'
 
@@ -95,7 +98,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'mlab',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
@@ -213,7 +216,6 @@ BEANSDBCFG = {
     "127.0.0.1:7900": range(16)
 }
 
-from utils.dbclient import Beansdb
 BEANSDB_CLIENT = Beansdb(BEANSDBCFG, 16)
 """usage:
 from mlab.settings import BEANSDB_CLIENT
@@ -241,3 +243,5 @@ MODULES = (
     'cms.modules.platform.PlatformModule',
 )
 
+# Celery config
+BROKER_URL = 'django://'

@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block breadcrumbs_items %}
+<a href="/home/">首页</a> ⟩<a href="/platform/">{{ current_module.label }}</a> ⟩<a class="active">PPImiRFS</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col l10 m12">
+        <div class="card">
+            {% load material_form %}
+            <form method="POST" enctype="multipart/form-data" class="viewform">
+                {% csrf_token %}
+                <div class="card-content">
+                    {% form form=form %}{% endform %}
+                </div>
+                <div class="card-action">
+                    <div class="right-align">
+                        <button type="submit" name="_submit" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
+                 </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
