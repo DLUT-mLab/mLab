@@ -20,7 +20,7 @@ def wangEditor_file_upload(request):
         else:
             result = handle_uploaded_file(file)
     return HttpResponse(result)
-    
+
 def handle_uploaded_file(f):
     full_path = settings.MEDIA_ROOT + f.name
     with open(full_path, 'wb+') as destination:
@@ -28,4 +28,4 @@ def handle_uploaded_file(f):
             destination.write(chunk)
     print 'handle ok'
     return urllib.quote(settings.MEDIA_URL + f.name)
-    
+

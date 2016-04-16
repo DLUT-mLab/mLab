@@ -22,6 +22,7 @@ from material.frontend import urls as frontend_urls
 from django.views.generic import RedirectView
 from storage.views import wangEditor_file_upload
 from mlab import settings
+from cms.views import tasklog
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/home/')),
@@ -29,6 +30,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^wangupload/$', wangEditor_file_upload),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^tasklog/$', tasklog),
 
 ]

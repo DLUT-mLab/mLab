@@ -5,7 +5,7 @@ sync:
 
 serve:
 	. venv/bin/activate;\
-	./manage.py runserver
+	./manage.py runserver 0.0.0.0:8000
 
 deploy:
 	. venv/bin/activate;\
@@ -17,3 +17,7 @@ beansdb:
 clean:
 	find -type f -name '*.pyc' -delete
 	rm -rf venv/
+
+task:
+	. venv/bin/activate;\
+	./manage.py celery -A mlab worker -l info

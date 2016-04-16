@@ -11,6 +11,16 @@
             <form method="POST" enctype="multipart/form-data" class="viewform">
                 {% csrf_token %}
                 <div class="card-content">
+                    <span class="card-title grey-text text-darken-2">PPImiRFS Input Files</span>
+                    <p>The file predicted_miRNA_pairs.txt must be in tabbed format, separated by tabulations (\t): 
+                    <br>miRNA1  miRNA2
+                    <br>miRNA3  miRNA4
+                    <br>...
+
+                    <br>The file wppin.txt must be in tabbed format, separated by tabulations (\t): 
+                    <br>gene1   gene2   score
+                    <br>gene3   gene4   score
+                    <br>...</p>
                     {% form form=form %}{% endform %}
                 </div>
                 <div class="card-action">
