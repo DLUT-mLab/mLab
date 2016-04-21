@@ -30,3 +30,5 @@ def tasklog(request):
     return HttpResponse(json.dumps(m))
 
 
+def not_support(request):
+    return render(request, 'common/not_support.html')

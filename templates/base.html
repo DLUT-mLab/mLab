@@ -3,7 +3,7 @@
 <html lang="zh-cn" style="background-color:#eee">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
         <!-- <title>{% block title %}{{ current_module.label }} - {{ block.super }}{% endblock %}</title> -->
         <title>大连理工大学xx实验室</title>
@@ -19,6 +19,12 @@
         {% endblock %}
 
         {% block js %}
+        <!--[if lt IE 9]>
+            <script type="text/javascript" charset="utf-8">
+                window.location.replace('/not_support/');
+            </script>
+            <meta http-equiv="Refresh" content="10; url=http://www.baidu.com/" />
+        <![endif]-->
         <script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
         <script src="{% static 'material/js/materialize.js' %}"></script>
         <script src="{% static 'material/js/jquery.datetimepicker.js' %}"></script>
