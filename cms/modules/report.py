@@ -21,7 +21,6 @@ class DetailView(LayoutMixin, TemplateView):
     template_name="report/detail.html"
 
     def get_context_data(self, **kwargs):
-        print self.kwargs['article_id']
         context = super(DetailView, self).get_context_data(**kwargs)
         try:
             article = Article.objects.get(id=self.kwargs['article_id'])

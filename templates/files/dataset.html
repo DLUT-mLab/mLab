@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block breadcrumbs_items %}
+<a href="/home/">首页</a> ⟩<a href="/files/">{{current_module.label}}</a> ⟩<a class="active">数据集</a>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col l12 m12" >
+        {% for item in dataset_list %}
+        <div class="card card-panel">
+            <div class="row">
+                <div class="col l9 m12">
+                    <h5>
+                        <a href="{{ item.url }}">{{ item.name }}</a>
+                    </h5>
+                    发布于 <span class="green-text">
+                    {{ item.pub_date|date:"Y-m-d H:i:s"}}</span>
+                    <div>
+                        {{ item.intro }}
+                    </div>
+                </div>
+                {% if report.cover_url %}
+                <div class="col l3 m12">
+                    <img class="cover" src="{{ report.cover_url}}" alt="">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="card card-panel">
+        <h5>这里是空的!</h5>
+        </div>
+        {% endfor %}
+      </div>
+
+</div>
+{% endblock %}

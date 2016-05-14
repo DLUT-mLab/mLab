@@ -24,7 +24,6 @@ class MemberView(LayoutMixin, TemplateView):
     template_name="member/member.html"
 
     def get_context_data(self, **kwargs):
-        print self.kwargs['member_id']
         context = super(MemberView, self).get_context_data(**kwargs)
         try:
             context['member'] = Member.objects.get(id=self.kwargs['member_id'])

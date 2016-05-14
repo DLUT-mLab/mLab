@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load i18n %} {% block breadcrumbs_items %}
+<a href="/home/">首页</a> ⟩<a href="/files/" >{{current_module.label}}</a> ⟩<a class="active">{{file.name}}</a> {% endblock %} {% block content %}
+<div class="row">
+    <div class="col l12 m12">
+        <div class="card card-panel">
+            {% load material_form %}
+            <span class="card-title green-text text-darken-3">{{ file.name }}</span>
+
+            <div class="card-body">
+            <p>{{ file.intro|safe }}</p>
+            <form method="POST" enctype="multipart/form-data" class="viewform">
+                {% csrf_token %}
+                <p style="color:red;"> *为了更好的为您提供服务，请您填写以下信息。</p>
+                {% form form=form %} {% part form.name prefix %}<i class="mdi-action-account-box prefix"></i>{% endpart %} {% part form.email prefix %}<i class="mdi-communication-email prefix"></i>{% endpart %} {% part form.department prefix %}<i class="mdi-action-lock-open prefix"></i>{% endpart %} {% endform %}
+                <div class="card-action">
+                    <div class="right-align">
+
+                        <button type="submit" name="_submit" class="btn btn-primary btn-lg">下载</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

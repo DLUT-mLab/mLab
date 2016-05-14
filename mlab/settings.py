@@ -238,7 +238,7 @@ MODULES = (
     'cms.modules.project.ProjectModule',
     'cms.modules.report.ReportModule',
     'cms.modules.member.MemberModule',
-    'cms.modules.album.AlbumModule',
+    #  'cms.modules.album.AlbumModule',
     'cms.modules.files.FilesModule',
     'cms.modules.platform.PlatformModule',
 )
