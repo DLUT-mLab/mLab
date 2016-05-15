@@ -18,7 +18,7 @@
                     发布于 <span class="green-text">
                     {{ item.pub_date|date:"Y-m-d H:i:s"}}</span>
                     <div>
-                        {{ item.intro }}
+                        {{ item.intro | safe }}
                     </div>
                 </div>
                 {% if report.cover_url %}

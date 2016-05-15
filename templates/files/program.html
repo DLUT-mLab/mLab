@@ -2,41 +2,38 @@
 {% extends 'base.html' %}
 
 {% block breadcrumbs_items %}
-<a href="/home/">首页</a> ⟩<a class="active">{{current_module.label}}</a>
+<a href="/home/">首页</a> ⟩<a href="/files/">{{current_module.label}}</a> ⟩<a class="active">数据集</a>
 {% endblock %}
 
 {% block content %}
 <div class="row">
-<div class="col l12 m12" >
-        <div class="card-panel">
-          <h3>Program</h3>
-            <a href="https://github.com/viewflow/viewflow" target="_blank"><i class="glyphicon glyphicon-edit"></i> Source code on Github</a>
-            <br><br>
-            <ul>
-                <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/helloworld" target="_blank">HelloWorld</a>  - Viewflow introduction sample</li>
-                <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/shipment" target="_blank">Shipment</a> - Automate shipment process for ecommerce website</li>
-                <li>
-                    <a href="https://github.com/viewflow/viewflow/blob/master/demo/customnode" target="_blank">Dynamic split</a> -  Custom flow node example</li>
-            </ul>
-            <h4>Standalone demo projects</h4>
-            <ul>
-                <li>
-                    <a href="https://github.com/kmmbvnr/viewflow-demo/tree/master/ecommerce" target="_blank">Ecommerce</a> - Delivery department automation with viewflow and Django Cartridge Ecommerce</li>
-                <li>
-                    <a href="https://github.com/kmmbvnr/viewflow-demo/tree/master/customauth" target="_blank">Customization</a> - Custom auth model and django-guardian for object level permissions, no viewsite</li>
-            </ul>
+  <div class="col l12 m12" >
+        {% for item in program_list %}
+        <div class="card card-panel">
+            <div class="row">
+                <div class="col l9 m12">
+                    <h5>
+                        <a href="{{ item.url }}">{{ item.name }}</a>
+                    </h5>
+                    发布于 <span class="green-text">
+                    {{ item.pub_date|date:"Y-m-d H:i:s"}}</span>
+                    <div>
+                        {{ item.intro|safe }}
+                    </div>
+                </div>
+                {% if report.cover_url %}
+                <div class="col l3 m12">
+                    <img class="cover" src="{{ report.cover_url}}" alt="">
+                </div>
+                {% endif %}
+            </div>
         </div>
+        {% empty %}
+        <div class="card card-panel">
+        <h5>这里是空的!</h5>
         </div>
+        {% endfor %}
+      </div>
 
-
-   <!--  <div class="col l4 m12">
-       <div class="card-panel">
-           <div class="card-title">Django-Viewflow</div>
-           <p>Easy to use, programmable workflow framework on top of Django</p>
-       </div>
-   </div>
-    -->
 </div>
 {% endblock %}
