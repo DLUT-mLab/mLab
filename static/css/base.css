@@ -54,3 +54,12 @@ li.news-item a:hover{
 }
 
 
+.fr{
+    float: right;
+}
+
+.pagination>.col {
+    height: 50px;
+    line-height: 48px;
+    padding-top: 10px;
+}
