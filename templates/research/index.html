@@ -68,8 +68,13 @@
                         <span class="card-title">{{ research.end_date|date:"Y年" }}</span>
                         {% endifchanged %}
                         <ul>
-                            <li><a href="{{ research.url }}">{{ research.name }}</a></li>
-
+                            <li class="news-item">
+                            <h6><span class="green-text text-darken-2" style="font-size: 20px">• </span>
+                                <a href="{{ research.url }}" target="_blank" title="{{ research.name }}">
+                                    {{ research.name  }}
+                                </a>
+                            </h6>
+                            </li>
                     {% endfor %}
                 </ul>
                 </div>

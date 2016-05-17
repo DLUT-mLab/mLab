@@ -43,32 +43,20 @@
         <div class="card">
             <div class="card-content"><span class="card-title green-text text-darken-3">历史科研项目</span>
                 <div class="card-body">
-                    <!--
-                    {% with year="" %}
-                    {% for project in project_past %}
-                        {% with temp_year=project.end_date|date:"Y年" %}
-                        {% if year and year ==  temp_year %}
-                        <li><a href="{{ project.url }}">{{ project.name }}</a></li>
-                        {% else %}
-                        {% set year = temp_year %}
-                        </ul>
-                        <span class="card-title">{{ year }}</span>
-                        <ul>
-                            <li><a href="{{ project.url }}">{{ project.name }}</a></li>
-                        {% endif %}
-                        {% endwith %}
-                    {% endfor %}
-                    {% endwith %}
-                    --!>
-
 
                     {% for project in project_past %}
                         {% ifchanged project.end_date|date:"Y年" %}
-                    </ul>
+                        </ul>
                         <span class="card-title">{{ project.end_date|date:"Y年" }}</span>
                         {% endifchanged %}
                         <ul>
-                            <li><a href="{{ project.url }}">{{ project.name }}</a></li>
+                            <li class="news-item">
+                            <h6><span class="green-text text-darken-2" style="font-size: 20px">• </span>
+                                <a href="{{ project.url }}" target="_blank" title="{{ project.name }}">
+                                    {{ project.name  }}
+                                </a>
+                            </h6>
+                            </li>
 
                     {% endfor %}
                 </ul>
