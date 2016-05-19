@@ -29,16 +29,7 @@
                     {% endfor %}
                 </ul>
 
-                <div class="row pagination" style="margin-bottom: 0">
-                    <div class="col s12 right-align">1-{{ latest_news.count}} of {{ latest_news.count}}<span style="padding-left:30px" class="right">
-
-                        <i class="mdi-image-navigate-before small grey-text"></i>
-                        &nbsp;
-                        <a href=""><i class="mdi-image-navigate-next small"></i></a>
-
-                        </span>
-                    </div>
-                </div>
+                {% include 'pagination.html' %}
             </div>
         </div>
     </div>

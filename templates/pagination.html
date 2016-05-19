@@ -1,0 +1,11 @@
+<div class="row pagination" style="margin-bottom: 0">
+  <div class="col s12 right-align">{{ pg.start }}-{{ pg.end }} of {{ pg.all_count }}<span style="padding-left:30px" class="right">
+
+      {% if pg.end < pg.all_count %}
+      <a href="?start={{ pg.end|add:1 }}"> <span>下一页 ></span>
+      </a>
+      {% endif %}
+
+    </span>
+  </div>
+</div>

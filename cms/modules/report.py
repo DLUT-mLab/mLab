@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from material import LayoutMixin
 from cms.models import Article
 from django.http import Http404
+from utils.pagination import Pagination, PAGE_LIMIT
 
 
 class HomeView(LayoutMixin, TemplateView):
@@ -12,8 +13,15 @@ class HomeView(LayoutMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['latest_report'] = Article.objects.filter(category__name=u'学术报告').order_by('pub_date').reverse()
+        start = self.request.GET.get('start', 1)
+        start = int(start) - 1 if int(start) - 1 >= 0 else 0
+        context['latest_report'] = Article.objects\
+                                          .filter(category__name=u'学术报告')\
+                                          .order_by('pub_date')\
+                                          .reverse()[start: start + PAGE_LIMIT]
         context['popular_report'] = Article.objects.filter(category__name=u'学术报告').order_by('read_count').reverse()
+        all_count = Article.objects.filter(category__name=u'学术报告').count()
+        context['pg'] = Pagination(start + 1, start + len(context['latest_report']), all_count)
         return context
 
 
