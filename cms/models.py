@@ -162,3 +162,21 @@ class Attachment(models.Model):
     @property
     def url(self):
         return '/files/%s/' % self.id
+
+
+class DownloadRequest(models.Model):
+
+    class Meta:
+        verbose_name = u'下载申请'
+        verbose_name_plural = u'下载申请'
+
+    name = models.CharField(u'姓名', max_length=200)
+    department = models.CharField(u'工作单位', max_length=200)
+    email = models.EmailField(u'邮箱')
+    apply_date = models.DateTimeField(u'申请日期', auto_now=True)
+    file = models.ForeignKey('Attachment', verbose_name=u'下载文件', null=True, on_delete=models.SET_NULL)
+    approve = models.BooleanField(u'是否通过', default=False)
+
+    def __unicode__(self):
+        return self.name + ' apply ->' + self.file.name
+

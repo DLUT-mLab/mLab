@@ -3,7 +3,7 @@
 from django.contrib import admin
 from django.db import models
 from django import forms
-from .models import Article, Member, Project, Membership, Category, Attachment
+from .models import Article, Member, Project, Membership, Category, Attachment, DownloadRequest
 from django_summernote.admin import SummernoteModelAdmin
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
@@ -61,6 +61,12 @@ class AttachmentAdmin(RichEditorModelAdmin):
 # @admin.register(Membership)
 # class MemberShipAdmin(RichEditorModelAdmin):
 #     pass
+
+@admin.register(DownloadRequest)
+class DownloadRequestAdmin(admin.ModelAdmin):
+    list_display = ('name', 'department', 'email', 'file', 'approve')
+    change_list_template = 'admin/change_downloadrequest_list.html'
+    pass
 
 
 
