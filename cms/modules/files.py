@@ -3,7 +3,7 @@ from material.frontend import Module
 from django.conf.urls import url
 from django.views.generic import TemplateView
 from material import LayoutMixin
-from cms.models import Attachment
+from cms.models import Attachment, DownloadRequest
 from django.http import Http404
 from django.conf import settings
 from django import forms
@@ -43,18 +43,25 @@ class ProgramView(LayoutMixin, TemplateView):
         return context
 
 
-class DownloadForm(forms.Form):
+class DownloadRequestForm(forms.ModelForm):
 
-    name = forms.CharField(label=u'姓名')
-    department = forms.CharField(label=u'工作单位')
-    email = forms.EmailField(label=u'邮箱')
+    class Meta:
+        model = DownloadRequest
+        fields = ['name', 'department', 'email', 'file']
+        widgets = {'file': forms.HiddenInput()}
+
+    def __init__(self, *args, **kwargs):
+        super(DownloadRequestForm, self).__init__(*args, **kwargs)
+        self.fields['file'].required = False
+
     agree = forms.BooleanField(label=u'是否同意协议')
 
 
 class DetailView(LayoutMixin, FormView):
     title = "资料详情"
     template_name="files/detail.html"
-    form_class = DownloadForm
+    form_class = DownloadRequestForm
+    success_url = '/files/success/'
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
@@ -64,21 +71,20 @@ class DetailView(LayoutMixin, FormView):
             raise Http404
         return context
 
-    def form_valid(self, form):
+    def get_initial(self):
+        initial = super(DetailView, self).get_initial()
         _id = self.kwargs['file_id']
-        try:
-            file = Attachment.objects.get(id=_id)
-        except Attachment.DoesNotExist:
-            raise Http404
-        return HttpResponseRedirect(settings.MEDIA_URL + file.content.name)
+        initial['file'] = Attachment.objects.get(id=_id)
+        return initial
 
-    # def get_success_url(self):
-    #     _id = self.get_form_kwargs()['data']['id']
-    #     try:
-    #         file = Attachment.objects.get(id=_id)
-    #     except Attachment.DoesNotExist:
-    #         raise Http404
-    #     return settings.MEDIA_URL + file.content.name
+    def form_valid(self, form):
+        form.save()
+        return super(DetailView, self).form_valid(form)
+
+
+class SuccessView(LayoutMixin, TemplateView):
+    title = "提交成功"
+    template_name="files/success.html"
 
 
 class FilesModule(Module):
@@ -96,4 +102,5 @@ class FilesModule(Module):
             url(r'^dataset/', DatasetView.as_view(), name='dataset'),
             url(r'^program/', ProgramView.as_view(), name='program'),
             url(r'^(?P<file_id>[0-9]+)/$', DetailView.as_view(), name='detail'),
+            url(r'^success/', SuccessView.as_view(), name='success')
         ]
