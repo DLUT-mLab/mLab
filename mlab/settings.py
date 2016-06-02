@@ -245,3 +245,18 @@ MODULES = (
 
 # Celery config
 BROKER_URL = 'django://'
+
+
+# mail send
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+  
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'mlab_admin@163.com'
+EMAIL_HOST_PASSWORD = 'admin123' # pass:adminadmin
+EMAIL_SUBJECT_PREFIX = u'[植物抗性基因预测平台]' 
+SEND_MAIL_FROM = 'mlab_admin@163.com'
+
+HOST = 'http://localhost:8000'
+

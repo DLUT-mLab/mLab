@@ -64,9 +64,21 @@ class AttachmentAdmin(RichEditorModelAdmin):
 
 @admin.register(DownloadRequest)
 class DownloadRequestAdmin(admin.ModelAdmin):
-    list_display = ('name', 'department', 'email', 'file', 'approve')
+    list_display = ('id', 'name', 'department', 'email', 'file', 'apply_date')
+    list_filter = ('apply_date',)
+    exclude = ('handle',)
     change_list_template = 'admin/change_downloadrequest_list.html'
-    pass
+
+    def get_queryset(self, request):
+        qs = super(DownloadRequestAdmin, self).get_queryset(request)
+        return qs.filter(handle=False)
+
+    def save_model(self, request, obj, form, change):
+        obj.handle = True
+        obj.save()
+        print 'saved'
+    
+
 
 
 

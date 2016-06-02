@@ -5,11 +5,11 @@ sync:
 
 serve:
 	. venv/bin/activate;\
-	./manage.py runserver 0.0.0.0:8000
+	python ./manage.py runserver 0.0.0.0:8000
 
 deploy:
 	. venv/bin/activate;\
-	./manage.py runserver 0.0.0.0:80
+	python ./manage.py runserver 0.0.0.0:80
 
 beansdb:
 	beansdb -p 7900 -H /opt/beansdb -T 0 -v -L /home/linwei/workspace/python_workspace/beansdb/beansdb_log.conf
@@ -20,4 +20,4 @@ clean:
 
 task:
 	. venv/bin/activate;\
-	./manage.py celery -A mlab worker -l info
+	python ./manage.py celery -A mlab worker -l info

@@ -176,7 +176,8 @@ class DownloadRequest(models.Model):
     apply_date = models.DateTimeField(u'申请日期', auto_now=True)
     file = models.ForeignKey('Attachment', verbose_name=u'下载文件', null=True, on_delete=models.SET_NULL)
     approve = models.BooleanField(u'是否通过', default=False)
+    handle = models.BooleanField(u'是否处理', default=False)
 
     def __unicode__(self):
-        return self.name + ' apply ->' + self.file.name
+        return self.name + ' 申请下载 ' + self.file.name
 

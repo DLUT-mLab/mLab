@@ -1,5 +1,6 @@
 {% load i18n admin_static %}{% load cycle from future %}
 {% if results %}
+
 <div class="results row">
     <div class="col s12">
         <table id="result_list" class="table">
@@ -21,14 +22,44 @@
                 <tr class="{% cycle 'row1' 'row2' %}">
                 <td></td>
                 {% for item in result %}
-                    {% if 'action-checkbox' not in item %}{{ item|force_escape }}{% endif %}
+                    {% if 'action-checkbox' not in item %}{{ item }}{% endif %}
                 {% endfor %}
-                <td><a class="waves-effect waves-light btn red white-text">拒绝</a></td>
-                <td><a class="waves-effect waves-light btn white-text">通过</a></td>
+                <td><a class="waves-effect waves-light btn red white-text refuse">拒绝</a></td>
+                <td><a class="waves-effect waves-light btn white-text confirm">通过</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
+
 {% endif %}
+
+<script>
+$().ready(function() {
+    function request_click() {
+        approve=0;
+        request_id = $(this).parent().parent().find('.field-id a').text()
+        if($(this).hasClass('confirm')){
+            approve=1;
+        }
+        $.ajax({
+           type: "POST",
+           url: "/download_approve/",
+           data: { "approve": approve, 'request_id': request_id},
+           dataType: 'json',
+           success: function(data){
+                if(data.code == 10000){
+                    alert('操作成功');
+                    window.location.reload();
+                }else{
+                    alert(data.msg);
+                }
+           }
+         })
+    };
+    $('.refuse').click(request_click);
+    $('.confirm').click(request_click);
+});
+    
+</script>
